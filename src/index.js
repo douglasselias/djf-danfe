@@ -9,7 +9,7 @@ const fs = require('fs')
  * @param      {string}  valor
  * @return     {string}
  */
-function mascaraCPF (valor) {
+function mascaraCPF(valor) {
   var retorno
   var grupo01 = valor.substring(0, 3)
   retorno = grupo01
@@ -34,7 +34,7 @@ function mascaraCPF (valor) {
  * @param      {string}  valor
  * @return     {string}
  */
-function mascaraCNPJ (valor) {
+function mascaraCNPJ(valor) {
   var retorno
   var grupo01 = valor.substring(0, 2)
   retorno = grupo01
@@ -63,7 +63,7 @@ function mascaraCNPJ (valor) {
  * @param      {string}  numero
  * @return     {string}
  */
-function formataInscricaoNacional (numero) {
+function formataInscricaoNacional(numero) {
   if (numero) {
     if (numero.length === 11) {
       return mascaraCPF(numero)
@@ -82,7 +82,7 @@ function formataInscricaoNacional (numero) {
  * @param      {string}  dt
  * @return     {string}
  */
-function formataData (dt) {
+function formataData(dt) {
   dt = dt ? dt.toString() : ''
   if (!dt) { return '' }
 
@@ -98,7 +98,7 @@ function formataData (dt) {
   return dia.padStart(2, '0') + '/' + mes.toString().padStart(2, '0') + '/' + ano
 }
 
-function formataHora (dt) {
+function formataHora(dt) {
   if (dt) {
     var data = new Date(dt)
     return data.getHours().toString().padStart(2, '0') + ':' + (data.getMinutes().toString().padStart(2, '0')) + ':' + data.getSeconds().toString().padStart(2, '0')
@@ -113,7 +113,7 @@ function formataHora (dt) {
  * @param      {number}  decimais
  * @return     {string}
  */
-function formataMoeda (numero, decimais) {
+function formataMoeda(numero, decimais) {
   decimais = decimais || 4
   var symbol = ''
   var decimal = ','
@@ -136,7 +136,7 @@ function formataMoeda (numero, decimais) {
  * @param      {Object}  entidade  djf-nfe
  * @return     {Object}
  */
-function dadosEntidade (entidade) {
+function dadosEntidade(entidade) {
   if (entidade) {
     return {
       nome: entidade.nome(),
@@ -157,7 +157,7 @@ function dadosEntidade (entidade) {
  * @param      {Object}  endereco   djf-nfe
  * @return     {Object}
  */
-function endereco (endereco) {
+function endereco(endereco) {
   if (endereco) {
     return {
       endereco: endereco.logradouro(),
@@ -178,7 +178,7 @@ function endereco (endereco) {
  * @param      {string}  chave
  * @return     {string}
  */
-function formataChave (chave) {
+function formataChave(chave) {
   var out = ''
   if (chave && chave.length === 44) {
     for (var i = 0; i < chave.split('').length; i++) {
@@ -199,7 +199,7 @@ function formataChave (chave) {
  * @param      {<object>}  nfe     djf-nfe
  * @return     {array}
  */
-function itens (nfe) {
+function itens(nfe) {
   var itens = []
   var nrItens = nfe.nrItens()
   for (var i = 1; i <= nrItens; i++) {
@@ -233,7 +233,7 @@ function itens (nfe) {
  * @param      {object}  nfe     djf-nfe
  * @return     {array}
  */
-function duplicatas (nfe) {
+function duplicatas(nfe) {
   var dups = []
   if (nfe.cobranca() && nfe.cobranca().nrDuplicatas() > 0) {
     var quant = nfe.cobranca().nrDuplicatas()
@@ -256,7 +256,7 @@ function duplicatas (nfe) {
  * @param      {object}  nfe     djf-nfe
  * @return     {string}
  */
-function observacoes (nfe) {
+function observacoes(nfe) {
   var quant = nfe.nrObservacoes()
   var result = ''
   for (var i = 1; i <= quant; i++) {
@@ -272,12 +272,45 @@ function observacoes (nfe) {
  * @param      {object}  data
  * @return     {string}
  */
-function renderHtml (data) {
-  if (!data) {
-    return ''
+function renderHtml(data) {
+  if (!data) return ''
+
+  handlebars.registerHelper('ifCond', function (v1, v2, options) {
+    if (v1.length > v2) {
+      return options.fn(this)
+    }
+    return options.inverse(this)
+  })
+
+  const chunks = (array, length) => {
+    const chunks = [], n = array.length
+    let i = 0
+
+    while (i < n) {
+      chunks.push(array.slice(i, (i += length)));
+    }
+
+    return chunks
   }
-  var template = fs.readFileSync(TEMPLATE_DANFE, 'utf8')
-  return handlebars.compile(template)(data)
+  const itemsPerPage = 27
+
+  // const arrayItems = chunks(data.itens, itemsPerPage)
+  // const firstPageItems = arrayItems.shift()
+
+  const firstPageItems = data.itens.slice(0, itemsPerPage)
+  const arrayItems = data.itens.slice(itemsPerPage)
+
+  const double34 = [...arrayItems, ...arrayItems]
+  const pageItems = chunks(double34, 60)
+
+  const moreData = {
+    itemsPerPage,
+    firstPageItems,
+    arrayItems: pageItems
+  }
+
+  const template = fs.readFileSync(TEMPLATE_DANFE, 'utf8')
+  return handlebars.compile(template)({ ...data, ...moreData })
 }
 
 /**
@@ -286,7 +319,7 @@ function renderHtml (data) {
  * @param      {object}  nfe     djf-nfe
  * @return     {object}
  */
-function getTemplateData (nfe) {
+function getTemplateData(nfe) {
   if (!nfe) {
     return null
   }
@@ -356,7 +389,7 @@ function getTemplateData (nfe) {
  * @param      {<type>}  nfe     djf-nfe
  * @return     {Object}  { description_of_the_return_value }
  */
-function model (nfe) {
+function model(nfe) {
   return {
     toHtml: () => renderHtml(getTemplateData(nfe))
   }

@@ -335,14 +335,6 @@
     margin-bottom: 1px !important;
     width: 100%;
   }
-
-  .break {
-    page-break-before: always
-  }
-
-  .break {
-    page-break-after: avoid
-  }
 </style>
 
 <body>
@@ -391,7 +383,7 @@
       </div>
     </div>
     <!-- Cabeçalho  -->
-    <div class="break">
+    <div class="cabecalho">
       <div class="columns grupo">
         <div class="column ">
           <div class="quadro">
@@ -746,7 +738,7 @@
                 </tr>
               </thead>
               <tbody>
-                {{#each itens}}
+                {{#each firstPageItems}}
                 <tr>
                   <td>{{this.codigo}}</td>
                   <td>{{this.descricao}}</td>
@@ -827,6 +819,155 @@
         </div>
       </div>
     </div>
+
+    {{#ifCond arrayItems 0}} 
+    {{#each arrayItems}}
+
+    <!-- Cabeçalho  -->
+    <div class="cabecalho">
+      <div class="columns grupo">
+        <div class="column ">
+          <div class="quadro">
+            <div class="columns">
+              <div class="column ">
+              </div>
+            </div>
+            <div class="columns linha quadro_cabecalho">
+              <div class="column  quadro_identificacao">
+                <div class="conteudo_campo">{{this.emitente.nome}}</div>
+                <div class="conteudo_campo">{{emitente.fantasia}}</div>
+                <div class="conteudo_campo">{{emitente.endereco}}, {{emitente.numero}}</div>
+                <div class="conteudo_campo">{{emitente.complemento}}</div>
+                <div class="conteudo_campo">{{emitente.bairro}} - {{emitente.municipio}} / {{emitente.uf}}</div>
+                <div class="conteudo_campo">CEP:{{emitente.cep}} - Fone: {{emitente.telefone}}</div>
+              </div>
+              <div class="column quadro_danfe">
+                <div class="center danfe">DANFE</div>
+                <div class="center">DOCUMENTO AUXILIAR DA NOTA FISCAL ELETRÔNICA</div>
+                <br>
+                <span class="numero center">
+                  <div class="center is-pulled-right operacao">{{operacao}}</div>
+                  <div>0- ENTRADA</div>
+                  <div>1- SAÍDA</div>
+                  <br>
+                  <div>Nº {{numero}}</div>
+                  <div>SÉRIE {{serie}}</div>
+                  <div>FOLHA ?/?</div>
+                </span>
+              </div>
+              <div class="column quadro_codigo_barra ">
+                <div class="codigo_barra">barra</div>
+                <div class="chave">
+                  <div class="tcampo">CHAVE DE ACESSO</div>
+                  {{chave}}
+                </div>
+                <div class="consulta">
+                  <br> Consulta de autenticidade no portal nacional da NF-e
+                  <span style="text-decoration: underline">www.nfe.fazenda.gov.br/portal</span> ou no site da Sefaz Autorizadora
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="columns grupo">
+        <div class="column ">
+          <div class="quadro">
+            <div class="columns">
+              <div class="column ">
+              </div>
+            </div>
+            <div class="columns linha">
+              <div class="column campo">
+                <div class="tcampo">NATUREZA DA OPERAÇÃO</div>
+                <span class="conteudo_campo">{{natureza}}</span>
+              </div>
+              <div class="column protocolo center">
+                <div class="tcampo">PROTOCOLO DE AUTORIZACAO DE USO </div>
+                <span class="conteudo_campo">{{protocolo}} - {{data_protocolo}}</span>
+              </div>
+            </div>
+            <div class="columns linha">
+              <div class="column">
+                <div class="tcampo">INSCRIÇÃO ESTADUAL</div>
+                <span class="conteudo_campo">{{emitente.ie}}</span>
+              </div>
+              <div class="column">
+                <div class="tcampo">INSCRIÇÃO ESTADUAL DO SUBST. TRIB.</div>
+                <span class="conteudo_campo">{{emitente.ie_st}}</span>
+              </div>
+              <div class="column">
+                <div class="tcampo">C.N.P.J.</div>
+                <span class="conteudo_campo">{{emitente.inscricao_nacional}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Itens  -->
+    <div class="columns grupo">
+      <div class="column ">
+        <div class="quadro">
+          <div class="columns">
+            <div class="column bold">
+              DADOS DOS PRODUTOS/SERVIÇOS
+            </div>
+          </div>
+          <div class="columns">
+            <table class="table is-bordered itens">
+              <thead>
+                <tr>
+                  <th>CÓDIGO</th>
+                  <th>DESCRIÇÃO</th>
+                  <th>NCM/SH</th>
+                  <th>CST</th>
+                  <th>CFOP</th>
+                  <th>UN.</th>
+                  <th>QUANT.</th>
+                  <th>V.UNIT.</th>
+                  <th>V.DESC.</th>
+                  <th>V.TOTAL</th>
+                  <th>BC.ICMS</th>
+                  <th>V.ICMS</th>
+                  <th>V.IPI</th>
+                  <th>%ICMS</th>
+                  <th>%IPI</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each this}}
+                <tr>
+                  <td>{{this.codigo}}</td>
+                  <td>{{this.descricao}}</td>
+                  <td>{{this.ncm}}</td>
+                  <td>{{this.cst}}</td>
+                  <td>{{this.cfop}}</td>
+                  <td>{{this.unidade}}</td>
+                  <td class="direita">{{this.quantidade}}</td>
+                  <td class="direita">{{this.valor}}</td>
+                  <td class="direita">{{this.desconto}}</td>
+                  <td class="direita">{{this.total}}</td>
+                  <td class="direita">{{this.base_calculo}}</td>
+                  <td class="direita">{{this.icms}}</td>
+                  <td class="direita">{{this.ipi}}</td>
+                  <td class="direita">{{this.porcentagem_icms}}</td>
+                  <td class="direita">{{this.porcentagem_ipi}}</td>
+                </tr>
+                {{/each}}
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {{/each}} 
+    {{/ifCond}}
+
   </div>
 </body>
 
