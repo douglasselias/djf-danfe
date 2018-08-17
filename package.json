@@ -21,12 +21,12 @@
     "url": "https://github.com/djalmaoliveira/djf-danfe/issues"
   },
   "devDependencies": {
-    "nodeunit": "^0.11.2"
+    "nodeunit": "^0.11.3"
   },
   "author": "Djalma Oliveira",
   "license": "MIT",
   "dependencies": {
-    "djf-nfe": "^1.0.1",
+    "djf-nfe": "^1.2.0",
     "handlebars": "^4.0.11"
   }
 }

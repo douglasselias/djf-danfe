@@ -2,7 +2,6 @@ const handlebars = require('handlebars')
 const NFe = require('djf-nfe')
 const TEMPLATE_DANFE = __dirname + '/template-danfe.hbs'
 const fs = require('fs')
-const path = require('path')
 
 /**
  * Retorna <valor> especificado com máscara do CPF.

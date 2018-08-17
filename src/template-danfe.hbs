@@ -7,335 +7,342 @@
   <title>DANFE</title>
 </head>
 <style>
-html,
-body,
-p,
-ol,
-ul,
-li,
-dl,
-dt,
-dd,
-blockquote,
-figure,
-fieldset,
-legend,
-textarea,
-pre,
-iframe,
-hr,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin: 0;
-  padding: 0;
-}
+  html,
+  body,
+  p,
+  ol,
+  ul,
+  li,
+  dl,
+  dt,
+  dd,
+  blockquote,
+  figure,
+  fieldset,
+  legend,
+  textarea,
+  pre,
+  iframe,
+  hr,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0;
+    padding: 0;
+  }
 
-* {
-  box-sizing: inherit;
-}
+  * {
+    box-sizing: inherit;
+  }
 
-.container {
-  margin: 0 auto;
-  position: relative;
-  max-width: 960px;
-}
+  .container {
+    margin: 0 auto;
+    position: relative;
+    max-width: 960px;
+  }
 
-.columns {
-  display: flex; //margin-left: -0.75rem;
-  //margin-right: -0.75rem;
-  margin-top: -0.75rem;
-}
+  .columns {
+    display: flex;
+    margin-top: -0.75rem;
+  }
 
-.column {
-  display: block;
-  -ms-flex-preferred-size: 0;
-  flex-basis: 0;
-  -webkit-box-flex: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-  -ms-flex-negative: 1;
-  flex-shrink: 1;
-}
+  .column {
+    display: block;
+    -ms-flex-preferred-size: 0;
+    flex-basis: 0;
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    -ms-flex-negative: 1;
+    flex-shrink: 1;
+  }
 
-.columns:not(:last-child) {
-  margin-bottom: calc(1.5rem - 0.75rem);
-}
+  .columns:not(:last-child) {
+    margin-bottom: calc(1.5rem - 0.75rem);
+  }
 
-.is-pulled-right {
-  float: right !important;
-}
+  .is-pulled-right {
+    float: right !important;
+  }
 
-.is-pulled-left {
-  float: left !important;
-}
+  .is-pulled-left {
+    float: left !important;
+  }
 
-.column.is-1 {
-  -webkit-box-flex: 0;
-  -ms-flex: none;
-  flex: none;
-  width: 8.33333%;
-}
+  .column.is-1 {
+    -webkit-box-flex: 0;
+    -ms-flex: none;
+    flex: none;
+    width: 8.33333%;
+  }
 
-span {
-  font-style: inherit;
-  font-weight: inherit;
-}
+  span {
+    font-style: inherit;
+    font-weight: inherit;
+  }
 
-*:before,
-*:after {
-  -webkit-box-sizing: inherit;
-  box-sizing: inherit;
-}
+  *:before,
+  *:after {
+    -webkit-box-sizing: inherit;
+    box-sizing: inherit;
+  }
 
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
 
-td,
-th {
-  padding: 0;
-  text-align: left;
-}
+  td,
+  th {
+    padding: 0;
+    text-align: left;
+  }
 
-.content.is-small {
-  font-size: 0.75rem;
-}
+  .content.is-small {
+    font-size: 0.75rem;
+  }
 
-.content.is-medium {
-  font-size: 1.25rem;
-}
+  .content.is-medium {
+    font-size: 1.25rem;
+  }
 
-.content.is-large {
-  font-size: 1.5rem;
-}
+  .content.is-large {
+    font-size: 1.5rem;
+  }
 </style>
 <style>
-html,
-body {
-  font-family: Courier New;
-  margin: 12px;
-  margin-top: 0px;
-  line-height: 1;
-  color: black !important;
-  font-size: 11px;
-  font-weight: 500 !important;
-}
+  html,
+  body {
+    font-family: Courier New;
+    margin: 12px;
+    margin-top: 0px;
+    line-height: 1;
+    color: black !important;
+    font-size: 11px;
+    font-weight: 500 !important;
+  }
 
-.area {
-  width: 778px !important;
-}
+  .area {
+    width: 778px !important;
+  }
 
-.quadro_codigo_barra {
-  padding: 0px !important;
-}
+  .quadro_codigo_barra {
+    padding: 0px !important;
+  }
 
-.codigo_barra {
-  height: 56px;
-}
+  .codigo_barra {
+    height: 56px;
+  }
 
-.chave {
-  height: 33px;
-  font-size: 82%;
-  font-weight: bold;
-  text-align: center;
-}
+  .chave {
+    height: 33px;
+    font-size: 82%;
+    font-weight: bold;
+    text-align: center;
+  }
 
-.protocolo,
-.consulta,
-.chave {
-  padding: 2px;
-}
+  .protocolo,
+  .consulta,
+  .chave {
+    padding: 2px;
+  }
 
-.protocolo {
-  flex: 0 0 296px;
-}
+  .protocolo {
+    flex: 0 0 296px;
+  }
 
-.codigo_barra,
-.chave {
-  border-bottom: 1px solid black;
-}
+  .codigo_barra,
+  .chave {
+    border-bottom: 1px solid black;
+  }
 
-.consulta {
-  font-size: 10px;
-  text-align: center;
-}
+  .consulta {
+    font-size: 10px;
+    text-align: center;
+  }
 
-.quadro_danfe {
-  flex: 0 0 96px;
-  line-height: 1.1;
-}
+  .quadro_danfe {
+    flex: 0 0 96px;
+    line-height: 1.1;
+  }
 
-.quadro_identificacao {
-  flex: 0 0 378px;
-  font-weight: bold;
-  font-size: 13px
-}
+  .quadro_identificacao {
+    flex: 0 0 378px;
+    font-weight: bold;
+    font-size: 13px
+  }
 
-.quadro_cabecalho {
-  height: 149px !important;
-}
+  .quadro_cabecalho {
+    height: 149px !important;
+  }
 
-div.quadro div.columns:nth-child(2) {
-  border-top: 1px solid black;
-}
+  div.quadro div.columns:nth-child(2) {
+    border-top: 1px solid black;
+  }
 
-div.quadro div.columns:first-child div.column {
-  padding: 0px;
-}
+  div.quadro div.columns:first-child div.column {
+    padding: 0px;
+  }
 
-.linha div.column:first-child {
-  border-left: 1px solid black;
-}
+  .linha div.column:first-child {
+    border-left: 1px solid black;
+  }
 
-.quadro .linha div.column {
-  border-bottom: 1px solid black;
-  border-right: 1px solid black;
-}
+  .quadro .linha div.column {
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+  }
 
-.conteudo_campo {
-  padding: 0 0 0 2px;
-}
+  .conteudo_campo {
+    padding: 0 0 0 2px;
+  }
 
-.quadro.imposto div.linha div.column div:nth-child(2),
-.direita {
-  text-align: right;
-}
+  .quadro.imposto div.linha div.column div:nth-child(2),
+  .direita {
+    text-align: right;
+  }
 
-.quadro div.columns:first-child div.column {
-  margin-top: 5px;
-}
+  .quadro div.columns:first-child div.column {
+    margin-top: 5px;
+  }
 
-.grupo .quadro .linha {
-  height: 33px;
-}
+  .grupo .quadro .linha {
+    height: 33px;
+  }
 
-.grupo {
-  margin-top: 5px;
-}
+  .grupo {
+    margin-top: 5px;
+  }
 
-.tcampo {
-  font-weight: bold;
-  font-size: 8px;
-  padding-bottom: 2px;
-  padding-left: 2px;
-  text-align: left;
-}
+  .tcampo {
+    font-weight: bold;
+    font-size: 8px;
+    padding-bottom: 2px;
+    padding-left: 2px;
+    text-align: left;
+  }
 
-.texto_recibo {
-  font-weight: bold;
-  font-size: 9px;
-  text-align: left;
-}
+  .texto_recibo {
+    font-weight: bold;
+    font-size: 9px;
+    text-align: left;
+  }
 
-.center {
-  text-align: center;
-}
+  .center {
+    text-align: center;
+  }
 
-.bold {
-  font-weight: bold;
-}
+  .bold {
+    font-weight: bold;
+  }
 
-.operacao {
-  font-size: 14px;
-  border: 1px solid black;
-  padding: 2px;
-}
+  .operacao {
+    font-size: 14px;
+    border: 1px solid black;
+    padding: 2px;
+  }
 
-.numero,
-.canhoto_nr {
-  font-size: 11px;
-  font-weight: bold;
-}
+  .numero,
+  .canhoto_nr {
+    font-size: 11px;
+    font-weight: bold;
+  }
 
-.danfe {
-  font-size: 13px;
-  font-weight: bold;
-}
+  .danfe {
+    font-size: 13px;
+    font-weight: bold;
+  }
 
-.itens {
-  font-size: 10px;
-}
+  .itens {
+    font-size: 10px;
+  }
 
 
-.data {
-  flex: 0 0 100px;
-  text-align: center;
-}
+  .data {
+    flex: 0 0 100px;
+    text-align: center;
+  }
 
-.uf {
-  flex: 0 0 30px;
-}
+  .uf {
+    flex: 0 0 30px;
+  }
 
-.placa {
-  flex: 0 0 70px;
-}
+  .placa {
+    flex: 0 0 70px;
+  }
 
-.nome {
-  flex: 0 0 300px;
-}
+  .nome {
+    flex: 0 0 300px;
+  }
 
-.fisco {
-  flex: 0 0 284px;
-}
+  .fisco {
+    flex: 0 0 284px;
+  }
 
-.complemento {
-  height: 114px !important;
-}
+  .complemento {
+    height: 114px !important;
+  }
 
-.complemento {
-  font-size: 10px;
-}
+  .complemento {
+    font-size: 10px;
+  }
 
-.canhoto_nr {
-  flex: 0 0 171px;
-}
+  .canhoto_nr {
+    flex: 0 0 171px;
+  }
 
-.area_canhoto_nr {
-  height: 65px;
-  border-left: 0px !important;
-  line-height: 1.5;
-  padding-left: 3px !important;
-}
+  .area_canhoto_nr {
+    height: 65px;
+    border-left: 0px !important;
+    line-height: 1.5;
+    padding-left: 3px !important;
+  }
 
-.canhoto_assinatura {
-  flex: 0 0 458px;
-}
+  .canhoto_assinatura {
+    flex: 0 0 458px;
+  }
 
-.duplicatas .duplicata {
-  font-size: 0.9rem;
-  text-align: center;
-  padding-right: 3px;
-  padding-left: 3px;
+  .duplicatas .duplicata {
+    font-size: 0.9rem;
+    text-align: center;
+    padding-right: 3px;
+    padding-left: 3px;
 
-  border-right: 1px solid gray;
-}
+    border-right: 1px solid gray;
+  }
 
-.duplicatas .duplicata div {
-  margin-top: 2px;
-}
+  .duplicatas .duplicata div {
+    margin-top: 2px;
+  }
 
-.duplicatas .tcampo {
-  font-size: 0.8rem;
-  margin-top: 1px;
-}
+  .duplicatas .tcampo {
+    font-size: 0.8rem;
+    margin-top: 1px;
+  }
 
-table td,
-table th {
-  border: 1px solid black !important;
-  border-top: 0px solid black !important;
-  padding: 2px !important;
-  color: black !important;
-}
+  table td,
+  table th {
+    border: 1px solid black !important;
+    border-top: 0px solid black !important;
+    padding: 2px !important;
+    color: black !important;
+  }
 
-table {
-  margin-bottom: 1px !important;
-  width: 100%;
-}
+  table {
+    margin-bottom: 1px !important;
+    width: 100%;
+  }
+
+  .break {
+    page-break-before: always
+  }
+
+  .break {
+    page-break-after: avoid
+  }
 </style>
 
 <body>
@@ -351,7 +358,9 @@ table {
           <div class="columns linha">
             <div class="column campo">
               <div class="texto_recibo conteudo_campo">
-                RECEBEMOS DE '{{emitente.nome}}' OS PRODUTOS E/OU SERVIÇOS CONSTANTES DA NOTA FISCAL ELETRÔNICA INDICADA ABAIXO. EMISSÃO: {{data_emissao}} - VALOR TOTAL: {{total_nota}} - DESTINATÁRIO: {{destinatario.nome}} - ENDEREÇO: {{destinatario.endereco}}, {{destinatario.numero}}, {{destinatario.bairro}} - {{destinatario.municipio}}/{{destinatario.uf}}
+                RECEBEMOS DE '{{emitente.nome}}' OS PRODUTOS E/OU SERVIÇOS CONSTANTES DA NOTA FISCAL ELETRÔNICA INDICADA ABAIXO. EMISSÃO:
+                {{data_emissao}} - VALOR TOTAL: {{total_nota}} - DESTINATÁRIO: {{destinatario.nome}} - ENDEREÇO: {{destinatario.endereco}},
+                {{destinatario.numero}}, {{destinatario.bairro}} - {{destinatario.municipio}}/{{destinatario.uf}}
               </div>
             </div>
           </div>
@@ -382,84 +391,87 @@ table {
       </div>
     </div>
     <!-- Cabeçalho  -->
-    <div class="columns grupo">
-      <div class="column ">
-        <div class="quadro">
-          <div class="columns">
-            <div class="column ">
+    <div class="break">
+      <div class="columns grupo">
+        <div class="column ">
+          <div class="quadro">
+            <div class="columns">
+              <div class="column ">
+              </div>
             </div>
-          </div>
-          <div class="columns linha quadro_cabecalho">
-            <div class="column  quadro_identificacao">
-              <div class="conteudo_campo">{{emitente.nome}}</div>
-              <div class="conteudo_campo">{{emitente.fantasia}}</div>
-              <div class="conteudo_campo">{{emitente.endereco}}, {{emitente.numero}}</div>
-              <div class="conteudo_campo">{{emitente.complemento}}</div>
-              <div class="conteudo_campo">{{emitente.bairro}} - {{emitente.municipio}} / {{emitente.uf}}</div>
-              <div class="conteudo_campo">CEP:{{emitente.cep}} - Fone: {{emitente.telefone}}</div>
-            </div>
-            <div class="column quadro_danfe">
-              <div class="center danfe">DANFE</div>
-              <div class="center">DOCUMENTO AUXILIAR DA NOTA FISCAL ELETRÔNICA</div>
-              <br>
-              <span class="numero center">
-                <div class="center is-pulled-right operacao">{{operacao}}</div>
-                <div>0- ENTRADA</div>
-                <div>1- SAÍDA</div>
+            <div class="columns linha quadro_cabecalho">
+              <div class="column  quadro_identificacao">
+                <div class="conteudo_campo">{{emitente.nome}}</div>
+                <div class="conteudo_campo">{{emitente.fantasia}}</div>
+                <div class="conteudo_campo">{{emitente.endereco}}, {{emitente.numero}}</div>
+                <div class="conteudo_campo">{{emitente.complemento}}</div>
+                <div class="conteudo_campo">{{emitente.bairro}} - {{emitente.municipio}} / {{emitente.uf}}</div>
+                <div class="conteudo_campo">CEP:{{emitente.cep}} - Fone: {{emitente.telefone}}</div>
+              </div>
+              <div class="column quadro_danfe">
+                <div class="center danfe">DANFE</div>
+                <div class="center">DOCUMENTO AUXILIAR DA NOTA FISCAL ELETRÔNICA</div>
                 <br>
-                <div>Nº {{numero}}</div>
-                <div>SÉRIE {{serie}}</div>
-                <div>FOLHA ?/?</div>
-              </span>
-            </div>
-            <div class="column quadro_codigo_barra ">
-              <div class="codigo_barra">barra</div>
-              <div class="chave">
-                <div class="tcampo">CHAVE DE ACESSO</div>
-                {{chave}}
+                <span class="numero center">
+                  <div class="center is-pulled-right operacao">{{operacao}}</div>
+                  <div>0- ENTRADA</div>
+                  <div>1- SAÍDA</div>
+                  <br>
+                  <div>Nº {{numero}}</div>
+                  <div>SÉRIE {{serie}}</div>
+                  <div>FOLHA ?/?</div>
+                </span>
               </div>
-              <div class="consulta">
-                <br> Consulta de autenticidade no portal nacional da NF-e
-                <span style="text-decoration: underline">www.nfe.fazenda.gov.br/portal</span> ou no site da Sefaz Autorizadora
+              <div class="column quadro_codigo_barra ">
+                <div class="codigo_barra">barra</div>
+                <div class="chave">
+                  <div class="tcampo">CHAVE DE ACESSO</div>
+                  {{chave}}
+                </div>
+                <div class="consulta">
+                  <br> Consulta de autenticidade no portal nacional da NF-e
+                  <span style="text-decoration: underline">www.nfe.fazenda.gov.br/portal</span> ou no site da Sefaz Autorizadora
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="columns grupo">
-      <div class="column ">
-        <div class="quadro">
-          <div class="columns">
-            <div class="column ">
+      <div class="columns grupo">
+        <div class="column ">
+          <div class="quadro">
+            <div class="columns">
+              <div class="column ">
+              </div>
             </div>
-          </div>
-          <div class="columns linha">
-            <div class="column campo">
-              <div class="tcampo">NATUREZA DA OPERAÇÃO</div>
-              <span class="conteudo_campo">{{natureza}}</span>
+            <div class="columns linha">
+              <div class="column campo">
+                <div class="tcampo">NATUREZA DA OPERAÇÃO</div>
+                <span class="conteudo_campo">{{natureza}}</span>
+              </div>
+              <div class="column protocolo center">
+                <div class="tcampo">PROTOCOLO DE AUTORIZACAO DE USO </div>
+                <span class="conteudo_campo">{{protocolo}} - {{data_protocolo}}</span>
+              </div>
             </div>
-            <div class="column protocolo center">
-              <div class="tcampo">PROTOCOLO DE AUTORIZACAO DE USO </div>
-              <span class="conteudo_campo">{{protocolo}} - {{data_protocolo}}</span>
-            </div>
-          </div>
-          <div class="columns linha">
-            <div class="column">
-              <div class="tcampo">INSCRIÇÃO ESTADUAL</div>
-              <span class="conteudo_campo">{{emitente.ie}}</span>
-            </div>
-            <div class="column">
-              <div class="tcampo">INSCRIÇÃO ESTADUAL DO SUBST. TRIB.</div>
-              <span class="conteudo_campo">{{emitente.ie_st}}</span>
-            </div>
-            <div class="column">
-              <div class="tcampo">C.N.P.J.</div>
-              <span class="conteudo_campo">{{emitente.inscricao_nacional}}</span>
+            <div class="columns linha">
+              <div class="column">
+                <div class="tcampo">INSCRIÇÃO ESTADUAL</div>
+                <span class="conteudo_campo">{{emitente.ie}}</span>
+              </div>
+              <div class="column">
+                <div class="tcampo">INSCRIÇÃO ESTADUAL DO SUBST. TRIB.</div>
+                <span class="conteudo_campo">{{emitente.ie_st}}</span>
+              </div>
+              <div class="column">
+                <div class="tcampo">C.N.P.J.</div>
+                <span class="conteudo_campo">{{emitente.inscricao_nacional}}</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
+
     </div>
     <!-- DEstinatário / remetente -->
     <div class="columns grupo">
