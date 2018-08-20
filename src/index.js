@@ -282,6 +282,10 @@ function renderHtml(data) {
     return options.inverse(this)
   })
 
+  handlebars.registerHelper('increaseTwo', function (value) {
+    return parseInt(value) + 2
+  })
+
   const chunks = (array, length) => {
     const chunks = [], n = array.length
     let i = 0
@@ -292,7 +296,7 @@ function renderHtml(data) {
 
     return chunks
   }
-  const itemsPerPage = 27
+  const itemsPerPage = 35
 
   // const arrayItems = chunks(data.itens, itemsPerPage)
   // const firstPageItems = arrayItems.shift()
@@ -302,11 +306,13 @@ function renderHtml(data) {
 
   const double34 = [...arrayItems, ...arrayItems]
   const pageItems = chunks(double34, 60)
+  const totalPages = pageItems.length + 1
 
   const moreData = {
     itemsPerPage,
     firstPageItems,
-    arrayItems: pageItems
+    arrayItems: pageItems,
+    totalPages
   }
 
   const template = fs.readFileSync(TEMPLATE_DANFE, 'utf8')

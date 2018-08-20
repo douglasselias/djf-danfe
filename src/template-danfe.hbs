@@ -411,7 +411,7 @@
                   <br>
                   <div>Nº {{numero}}</div>
                   <div>SÉRIE {{serie}}</div>
-                  <div>FOLHA ?/?</div>
+                  <div>FOLHA 1/{{totalPages}}</div>
                 </span>
               </div>
               <div class="column quadro_codigo_barra ">
@@ -796,29 +796,6 @@
       </div>
     </div>
     {{/if}}
-    <!-- Dados adicionais  -->
-    <div class="columns grupo">
-      <div class="column ">
-        <div class="quadro">
-          <div class="columns">
-            <div class="column bold">
-              DADOS ADICIONAIS
-            </div>
-          </div>
-          <div class="columns linha complemento">
-            <div class="column">
-              <div class="tcampo">INFORMAÇÕES COMPLEMENTARES</div>
-              <span class="conteudo_campo">{{informacoes_fisco}}</span>
-              <span class="conteudo_campo">{{informacoes_complementares}}</span>
-              <span class="conteudo_campo">{{observacao}}</span>
-            </div>
-            <div class="column fisco">
-              <div class="tcampo">RESERVADO AO FISCO</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
     {{#ifCond arrayItems 0}} 
     {{#each arrayItems}}
@@ -834,32 +811,32 @@
             </div>
             <div class="columns linha quadro_cabecalho">
               <div class="column  quadro_identificacao">
-                <div class="conteudo_campo">{{this.emitente.nome}}</div>
-                <div class="conteudo_campo">{{emitente.fantasia}}</div>
-                <div class="conteudo_campo">{{emitente.endereco}}, {{emitente.numero}}</div>
-                <div class="conteudo_campo">{{emitente.complemento}}</div>
-                <div class="conteudo_campo">{{emitente.bairro}} - {{emitente.municipio}} / {{emitente.uf}}</div>
-                <div class="conteudo_campo">CEP:{{emitente.cep}} - Fone: {{emitente.telefone}}</div>
+                <div class="conteudo_campo">{{../emitente.nome}}</div>
+                <div class="conteudo_campo">{{../emitente.fantasia}}</div>
+                <div class="conteudo_campo">{{../emitente.endereco}}, {{../emitente.numero}}</div>
+                <div class="conteudo_campo">{{../emitente.complemento}}</div>
+                <div class="conteudo_campo">{{../emitente.bairro}} - {{../emitente.municipio}} / {{../emitente.uf}}</div>
+                <div class="conteudo_campo">CEP:{{../emitente.cep}} - Fone: {{../emitente.telefone}}</div>
               </div>
               <div class="column quadro_danfe">
                 <div class="center danfe">DANFE</div>
                 <div class="center">DOCUMENTO AUXILIAR DA NOTA FISCAL ELETRÔNICA</div>
                 <br>
                 <span class="numero center">
-                  <div class="center is-pulled-right operacao">{{operacao}}</div>
+                  <div class="center is-pulled-right operacao">{{../operacao}}</div>
                   <div>0- ENTRADA</div>
                   <div>1- SAÍDA</div>
                   <br>
-                  <div>Nº {{numero}}</div>
-                  <div>SÉRIE {{serie}}</div>
-                  <div>FOLHA ?/?</div>
+                  <div>Nº {{../numero}}</div>
+                  <div>SÉRIE {{../serie}}</div>
+                  <div>FOLHA {{increaseTwo @index}}/{{../totalPages}}</div>
                 </span>
               </div>
-              <div class="column quadro_codigo_barra ">
+              <div class="column quadro_codigo_barra">
                 <div class="codigo_barra">barra</div>
                 <div class="chave">
                   <div class="tcampo">CHAVE DE ACESSO</div>
-                  {{chave}}
+                  {{../chave}}
                 </div>
                 <div class="consulta">
                   <br> Consulta de autenticidade no portal nacional da NF-e
@@ -880,25 +857,25 @@
             <div class="columns linha">
               <div class="column campo">
                 <div class="tcampo">NATUREZA DA OPERAÇÃO</div>
-                <span class="conteudo_campo">{{natureza}}</span>
+                <span class="conteudo_campo">{{../natureza}}</span>
               </div>
               <div class="column protocolo center">
                 <div class="tcampo">PROTOCOLO DE AUTORIZACAO DE USO </div>
-                <span class="conteudo_campo">{{protocolo}} - {{data_protocolo}}</span>
+                <span class="conteudo_campo">{{../protocolo}} - {{../data_protocolo}}</span>
               </div>
             </div>
             <div class="columns linha">
               <div class="column">
                 <div class="tcampo">INSCRIÇÃO ESTADUAL</div>
-                <span class="conteudo_campo">{{emitente.ie}}</span>
+                <span class="conteudo_campo">{{../emitente.ie}}</span>
               </div>
               <div class="column">
                 <div class="tcampo">INSCRIÇÃO ESTADUAL DO SUBST. TRIB.</div>
-                <span class="conteudo_campo">{{emitente.ie_st}}</span>
+                <span class="conteudo_campo">{{../emitente.ie_st}}</span>
               </div>
               <div class="column">
                 <div class="tcampo">C.N.P.J.</div>
-                <span class="conteudo_campo">{{emitente.inscricao_nacional}}</span>
+                <span class="conteudo_campo">{{../emitente.inscricao_nacional}}</span>
               </div>
             </div>
           </div>
@@ -967,6 +944,30 @@
 
     {{/each}} 
     {{/ifCond}}
+
+       <!-- Dados adicionais  -->
+    <div class="columns grupo">
+      <div class="column ">
+        <div class="quadro">
+          <div class="columns">
+            <div class="column bold">
+              DADOS ADICIONAIS
+            </div>
+          </div>
+          <div class="columns linha complemento">
+            <div class="column">
+              <div class="tcampo">INFORMAÇÕES COMPLEMENTARES</div>
+              <span class="conteudo_campo">{{informacoes_fisco}}</span>
+              <span class="conteudo_campo">{{informacoes_complementares}}</span>
+              <span class="conteudo_campo">{{observacao}}</span>
+            </div>
+            <div class="column fisco">
+              <div class="tcampo">RESERVADO AO FISCO</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
   </div>
 </body>
