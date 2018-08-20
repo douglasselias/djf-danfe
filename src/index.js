@@ -308,11 +308,20 @@ function renderHtml(data) {
   const pageItems = chunks(double34, 60)
   const totalPages = pageItems.length + 1
 
+  const duplicatas = [
+    {numero: '1000070718',vencimento: '25/04/18', valor: 'R$ 1500,12'},
+    {numero: '1000070718',vencimento: '25/04/18', valor: 'R$ 1500,12'},
+    {numero: '1000070718',vencimento: '25/04/18', valor: 'R$ 1500,12'},
+    {numero: '1000070718',vencimento: '25/04/18', valor: 'R$ 1500,12'},
+    {numero: '1000070718',vencimento: '25/04/18', valor: 'R$ 1500,12'},
+  ]
+
   const moreData = {
     itemsPerPage,
     firstPageItems,
     arrayItems: pageItems,
-    totalPages
+    totalPages,
+    duplicatas
   }
 
   const template = fs.readFileSync(TEMPLATE_DANFE, 'utf8')

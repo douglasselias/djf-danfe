@@ -91,7 +91,6 @@
   }
 
   table {
-    border-collapse: collapse;
     border-spacing: 0;
   }
 
@@ -116,7 +115,7 @@
 <style>
   html,
   body {
-    font-family: Courier New;
+    font-family: 'Times New Roman', Times, serif;
     margin: 12px;
     margin-top: 0px;
     line-height: 1;
@@ -197,7 +196,7 @@
   }
 
   .conteudo_campo {
-    padding: 0 0 0 2px;
+    padding: 2px;
   }
 
   .quadro.imposto div.linha div.column div:nth-child(2),
@@ -226,9 +225,12 @@
   }
 
   .texto_recibo {
-    font-weight: bold;
-    font-size: 9px;
+    font-size: 7pt;
     text-align: left;
+  }
+
+  .all-rounded-corners {
+    border-radius: 5px;
   }
 
   .center {
@@ -325,15 +327,54 @@
 
   table td,
   table th {
-    border: 1px solid black !important;
-    border-top: 0px solid black !important;
-    padding: 2px !important;
-    color: black !important;
+    border: 1px solid black;
+    padding: 2px;
+    color: black;
   }
 
   table {
-    margin-bottom: 1px !important;
+    margin-bottom: 1px;
     width: 100%;
+  }
+
+  .dashed {
+    width: 100%;
+    height: 1px;
+    border: 1px dashed rgba(128, 128, 128, 0.5);
+    margin: 5px 0;
+  }
+
+  .top-left-round {
+border-radius: 5px 0 0 0;
+  }
+
+  .top-right-round {
+    border-radius: 0 5px 0 0;
+  }
+
+  .bottom-left-round {
+    border-radius: 0 0 0 5px;
+  }
+
+  .bottom-right-round {
+    border-radius: 0 0 5px 0;
+  }
+
+  .padding-top {
+    padding-top: 3px;
+  }
+
+  .font-14 {
+    font-size: 14pt;
+  }
+
+  .font-10 {
+    font-size: 10pt;
+  }
+
+  .reset-marpads {
+    margin: 0;
+    padding: 0;
   }
 </style>
 
@@ -347,8 +388,8 @@
             <div class="column ">
             </div>
           </div>
-          <div class="columns linha">
-            <div class="column campo">
+          <div class="columns linha all-rounded-corners">
+            <div class="column campo all-rounded-corners">
               <div class="texto_recibo conteudo_campo">
                 RECEBEMOS DE '{{emitente.nome}}' OS PRODUTOS E/OU SERVIÇOS CONSTANTES DA NOTA FISCAL ELETRÔNICA INDICADA ABAIXO. EMISSÃO:
                 {{data_emissao}} - VALOR TOTAL: {{total_nota}} - DESTINATÁRIO: {{destinatario.nome}} - ENDEREÇO: {{destinatario.endereco}},
@@ -357,10 +398,10 @@
             </div>
           </div>
           <div class="columns linha">
-            <div class="column">
+            <div class="column all-rounded-corners padding-top">
               <div class="tcampo">DATA DE RECEBIMENTO</div>
             </div>
-            <div class="column canhoto_assinatura">
+            <div class="column canhoto_assinatura all-rounded-corners padding-top">
               <div class="tcampo">IDENTIFICAÇÃO E ASSINATURA DO RECEBEDOR</div>
             </div>
           </div>
@@ -369,19 +410,21 @@
       <div class="column canhoto_nr">
         <div class="quadro">
           <div class="columns">
-            <div class="column ">
+            <div class="column">
             </div>
           </div>
-          <div class="columns  linha">
-            <div class="column  area_canhoto_nr">
-              <div class="center">NF-e</div>
-              <div class="">Nº {{numero}}</div>
-              <div class="">SÉRIE: {{serie}}</div>
+          <div class="columns linha all-rounded-corners">
+            <div class="column area_canhoto_nr all-rounded-corners">
+              <div class="center font-14">NF-e</div>
+              <div class="center font-10 reset-marpads">Nº {{numero}}<br/> SÉRIE: {{serie}}</div>
             </div>
           </div>
         </div>
       </div>
     </div>
+
+    <div class="dashed"></div>
+
     <!-- Cabeçalho  -->
     <div class="cabecalho">
       <div class="columns grupo">
@@ -391,8 +434,8 @@
               <div class="column ">
               </div>
             </div>
-            <div class="columns linha quadro_cabecalho">
-              <div class="column  quadro_identificacao">
+            <div class="columns linha quadro_cabecalho all-rounded-corners">
+              <div class="column quadro_identificacao all-rounded-corners">
                 <div class="conteudo_campo">{{emitente.nome}}</div>
                 <div class="conteudo_campo">{{emitente.fantasia}}</div>
                 <div class="conteudo_campo">{{emitente.endereco}}, {{emitente.numero}}</div>
@@ -400,12 +443,12 @@
                 <div class="conteudo_campo">{{emitente.bairro}} - {{emitente.municipio}} / {{emitente.uf}}</div>
                 <div class="conteudo_campo">CEP:{{emitente.cep}} - Fone: {{emitente.telefone}}</div>
               </div>
-              <div class="column quadro_danfe">
+              <div class="column quadro_danfe all-rounded-corners">
                 <div class="center danfe">DANFE</div>
                 <div class="center">DOCUMENTO AUXILIAR DA NOTA FISCAL ELETRÔNICA</div>
                 <br>
                 <span class="numero center">
-                  <div class="center is-pulled-right operacao">{{operacao}}</div>
+                  <div class="center is-pulled-right operacao all-rounded-corners">{{operacao}}</div>
                   <div>0- ENTRADA</div>
                   <div>1- SAÍDA</div>
                   <br>
@@ -414,13 +457,13 @@
                   <div>FOLHA 1/{{totalPages}}</div>
                 </span>
               </div>
-              <div class="column quadro_codigo_barra ">
-                <div class="codigo_barra">barra</div>
-                <div class="chave">
+              <div class="column quadro_codigo_barra all-rounded-corners">
+                <div class="codigo_barra all-rounded-corners">barra</div>
+                <div class="chave all-rounded-corners">
                   <div class="tcampo">CHAVE DE ACESSO</div>
                   {{chave}}
                 </div>
-                <div class="consulta">
+                <div class="consulta all-rounded-corners">
                   <br> Consulta de autenticidade no portal nacional da NF-e
                   <span style="text-decoration: underline">www.nfe.fazenda.gov.br/portal</span> ou no site da Sefaz Autorizadora
                 </div>
@@ -436,26 +479,26 @@
               <div class="column ">
               </div>
             </div>
-            <div class="columns linha">
-              <div class="column campo">
+            <div class="columns linha all-rounded-corners">
+              <div class="column campo all-rounded-corners">
                 <div class="tcampo">NATUREZA DA OPERAÇÃO</div>
                 <span class="conteudo_campo">{{natureza}}</span>
               </div>
-              <div class="column protocolo center">
+              <div class="column protocolo center all-rounded-corners">
                 <div class="tcampo">PROTOCOLO DE AUTORIZACAO DE USO </div>
                 <span class="conteudo_campo">{{protocolo}} - {{data_protocolo}}</span>
               </div>
             </div>
             <div class="columns linha">
-              <div class="column">
+              <div class="column all-rounded-corners">
                 <div class="tcampo">INSCRIÇÃO ESTADUAL</div>
                 <span class="conteudo_campo">{{emitente.ie}}</span>
               </div>
-              <div class="column">
+              <div class="column all-rounded-corners">
                 <div class="tcampo">INSCRIÇÃO ESTADUAL DO SUBST. TRIB.</div>
                 <span class="conteudo_campo">{{emitente.ie_st}}</span>
               </div>
-              <div class="column">
+              <div class="column all-rounded-corners">
                 <div class="tcampo">C.N.P.J.</div>
                 <span class="conteudo_campo">{{emitente.inscricao_nacional}}</span>
               </div>
@@ -465,65 +508,65 @@
       </div>
 
     </div>
-    <!-- DEstinatário / remetente -->
+    <!-- Destinatário / remetente -->
     <div class="columns grupo">
       <div class="column ">
-        <div class="quadro">
+        <div class="quadro all-rounded-corners">
           <div class="columns">
             <div class="column bold">
               DESTINATÁRIO/REMETENTE
             </div>
           </div>
-          <div class="columns linha">
-            <div class="column ">
+          <div class="columns linha all-rounded-corners">
+            <div class="column all-rounded-corners">
               <div class="tcampo">NOME/RAZÃO SOCIAL</div>
               <span class="conteudo_campo">{{destinatario.nome}}</span>
             </div>
-            <div class="column ">
+            <div class="column all-rounded-corners">
               <div class="tcampo">C.N.P.J./C.P.F.</div>
               <span class="conteudo_campo">{{destinatario.inscricao_nacional}}</span>
             </div>
-            <div class="column data">
+            <div class="column data all-rounded-corners">
               <div class="tcampo">DATA DA EMISSÃO</div>
               <span class="conteudo_campo">{{data_emissao}}</span>
             </div>
           </div>
-          <div class="columns linha">
-            <div class="column">
+          <div class="columns linha all-rounded-corners">
+            <div class="column all-rounded-corners">
               <div class="tcampo">ENDEREÇO</div>
               <span class="conteudo_campo">{{destinatario.endereco}}, {{destinatario.numero}}</span>
             </div>
-            <div class="column ">
+            <div class="column all-rounded-corners">
               <div class="tcampo ">BAIRRO/DISTRITO</div>
               <span class="conteudo_campo">{{destinatario.bairro}}</span>
             </div>
-            <div class="column ">
+            <div class="column all-rounded-corners">
               <div class="tcampo">CEP</div>
               <span class="conteudo_campo">{{destinatario.cep}}</span>
             </div>
-            <div class="column data">
+            <div class="column data all-rounded-corners">
               <div class="tcampo">DATA SAÍDA/ENTRADA</div>
               <span class="conteudo_campo">{{data_saida}}</span>
             </div>
           </div>
           <div class="columns linha">
-            <div class="column">
+            <div class="column all-rounded-corners">
               <div class="tcampo">MUNICÍPIO</div>
               <span class="conteudo_campo">{{destinatario.municipio}}</span>
             </div>
-            <div class="column">
+            <div class="column all-rounded-corners">
               <div class="tcampo">FONE/FAX</div>
               <span class="conteudo_campo">{{destinatario.telefone}}</span>
             </div>
-            <div class="column uf">
+            <div class="column uf all-rounded-corners">
               <div class="tcampo">UF</div>
               <span class="conteudo_campo">{{destinatario.uf}}</span>
             </div>
-            <div class="column">
+            <div class="column all-rounded-corners">
               <div class="tcampo">INSCRIÇÃO ESTADUAL</div>
               <span class="conteudo_campo">{{destinatario.ie}}</span>
             </div>
-            <div class="column data">
+            <div class="column data all-rounded-corners">
               <div class="tcampo">HORA DA SAÍDA</div>
               <span class="conteudo_campo">{{hora_saida}}</span>
             </div>
@@ -564,60 +607,60 @@
     <!-- Impostos  -->
     <div class="columns grupo">
       <div class="column ">
-        <div class="quadro imposto">
+        <div class="quadro imposto all-rounded-corners">
           <div class="columns">
             <div class="column bold">
               CÁLCULO DO IMPOSTO
             </div>
           </div>
           <div class="columns linha">
-            <div class="column">
+            <div class="column all-rounded-corners">
               <div class="tcampo">BASE DE CÁLCULO DO ICMS</div>
               <div>{{base_calculo_icms}}</div>
             </div>
-            <div class="column">
+            <div class="column all-rounded-corners">
               <div class="tcampo">VALOR DO ICMS</div>
               <div>{{imposto_icms}}</div>
             </div>
-            <div class="column">
+            <div class="column all-rounded-corners">
               <div class="tcampo">BASE DE CÁLCULO DO ICMS ST</div>
               <div>{{base_calculo_icms_st}}</div>
             </div>
-            <div class="column">
+            <div class="column all-rounded-corners">
               <div class="tcampo">VALOR DO ICMS ST</div>
               <div>{{imposto_icms_st}}</div>
             </div>
-            <div class="column">
+            <div class="column all-rounded-corners">
               <div class="tcampo">VALOR TOTAL APROX. TRIB.</div>
               <div>{{imposto_tributos}}</div>
             </div>
-            <div class="column">
+            <div class="column all-rounded-corners">
               <div class="tcampo">VALOR TOTAL DOS PRODUTOS</div>
               <div>{{total_produtos}}</div>
             </div>
           </div>
           <div class="columns linha">
-            <div class="column">
+            <div class="column all-rounded-corners">
               <div class="tcampo">VALOR DO FRETE</div>
               <div>{{total_frete}}</div>
             </div>
-            <div class="column">
+            <div class="column all-rounded-corners">
               <div class="tcampo">VALOR DO SEGURO</div>
               <div>{{total_seguro}}</div>
             </div>
-            <div class="column">
+            <div class="column all-rounded-corners">
               <div class="tcampo">DESCONTO</div>
               <div>{{total_desconto}}</div>
             </div>
-            <div class="column">
+            <div class="column all-rounded-corners">
               <div class="tcampo">OUTRAS DESPESAS ACESSÓRIAS</div>
               <div>{{total_despesas}}</div>
             </div>
-            <div class="column">
+            <div class="column all-rounded-corners">
               <div class="tcampo">VALOR DO IPI</div>
               <div>{{total_ipi}}</div>
             </div>
-            <div class="column">
+            <div class="column all-rounded-corners">
               <div class="tcampo">VALOR TOTAL DA NOTA</div>
               <div>{{total_nota}}</div>
             </div>
@@ -627,79 +670,79 @@
     </div>
     <!-- transportadora -->
     <div class="columns grupo">
-      <div class="column ">
-        <div class="quadro">
+      <div class="column">
+        <div class="quadro  all-rounded-corners">
           <div class="columns">
             <div class="column bold">
               TRANSPORTADOR/VOLUMES TRANSPORTADOS
             </div>
           </div>
-          <div class="columns linha">
-            <div class="column nome">
+          <div class="columns linha  all-rounded-corners">
+            <div class="column nome  all-rounded-corners">
               <div class="tcampo">RAZÃO SOCIAL</div>
               <span class="conteudo_campo">{{transportador.nome}}</span>
             </div>
-            <div class="column">
+            <div class="column all-rounded-corners">
               <div class="tcampo">FRETE POR CONTA DO</div>
               <span class="conteudo_campo">{{modalidade_frete}} - {{modalidade_frete_texto}}</span>
             </div>
-            <div class="column">
+            <div class="column all-rounded-corners">
               <div class="tcampo">CÓDIGO ANTT</div>
               <span class="conteudo_campo">{{veiculo_antt}}</span>
             </div>
-            <div class="column placa">
+            <div class="column placa  all-rounded-corners">
               <div class="tcampo">PLACA DO VEÍCULO</div>
               <span class="conteudo_campo">{{veiculo_placa}}</span>
             </div>
-            <div class="column uf">
+            <div class="column uf  all-rounded-corners">
               <div class="tcampo">UF</div>
               <span class="conteudo_campo">{{veiculo_placa_uf}}</span>
             </div>
-            <div class="column">
+            <div class="column  all-rounded-corners">
               <div class="tcampo">C.N.P.J./C.P.F.</div>
               <span class="conteudo_campo">{{transportador.inscricao_nacional}}</span>
             </div>
           </div>
           <div class="columns linha">
-            <div class="column">
+            <div class="column  all-rounded-corners">
               <div class="tcampo">ENDEREÇO</div>
               <span class="conteudo_campo">{{transportador.endereco}}, {{transportador.numero}}</span>
             </div>
-            <div class="column">
+            <div class="column all-rounded-corners">
               <div class="tcampo">MUNICÍPIO</div>
               <span class="conteudo_campo">{{transportador.municipio}}</span>
             </div>
-            <div class="column uf">
+            <div class="column uf  all-rounded-corners">
               <div class="tcampo">UF</div>
               <span class="conteudo_campo">{{transportador.uf}}</span>
             </div>
-            <div class="column">
+            <div class="column all-rounded-corners">
               <div class="tcampo">INSCRIÇÃO ESTADUAL</div>
               <span class="conteudo_campo">{{transportador.ie}}</span>
             </div>
           </div>
           <div class="columns linha">
-            <div class="column direita">
+            <div class="column direita all-rounded-corners">
               <div class="tcampo">QUANTIDADE</div>
               <span class="conteudo_campo">{{volume_quantidade}}</span>
             </div>
-            <div class="column">
+            <div class="column all-rounded-corners">
               <div class="tcampo">ESPÉCIE</div>
               <span class="conteudo_campo">{{volume_especie}}</span>
             </div>
-            <div class="column">
+            <div class="column all-rounded-corners">
               <div class="tcampo">MARCA</div>
               <span class="conteudo_campo">{{volume_marca}}</span>
             </div>
-            <div class="column">
+            <div class="column all-rounded-corners">
               <div class="tcampo">NUMERAÇÃO</div>
               <span class="conteudo_campo">{{volume_numeracao}}</span>
             </div>
-            <div class="column direita">
+            <div class="column direita all-rounded-corners">
               <div class="tcampo">PESO BRUTO</div>
               <span class="conteudo_campo">{{volume_pesoBruto}}</span>
             </div>
-            <div class="column direita">
+            <div class="column direita all-rounded-corners">
               <div class="tcampo">PESO LÍQUIDO</div>
               <span class="conteudo_campo">{{volume_pesoLiquido}}</span>
             </div>
@@ -709,18 +752,18 @@
     </div>
     <!-- Itens  -->
     <div class="columns grupo">
-      <div class="column ">
+      <div class="column">
         <div class="quadro">
           <div class="columns">
             <div class="column bold">
               DADOS DOS PRODUTOS/SERVIÇOS
             </div>
           </div>
-          <div class="columns">
-            <table class="table is-bordered itens">
+          <div class="columns all-rounded-corners">
+            <table class="table itens">
               <thead>
                 <tr>
-                  <th>CÓDIGO</th>
+                  <th class="top-left-round">CÓDIGO</th>
                   <th>DESCRIÇÃO</th>
                   <th>NCM/SH</th>
                   <th>CST</th>
@@ -734,13 +777,13 @@
                   <th>V.ICMS</th>
                   <th>V.IPI</th>
                   <th>%ICMS</th>
-                  <th>%IPI</th>
+                  <th class="top-right-round">%IPI</th>
                 </tr>
               </thead>
               <tbody>
                 {{#each firstPageItems}}
                 <tr>
-                  <td>{{this.codigo}}</td>
+                  <td class="{{#if @last}}bottom-left-round{{/if}}">{{this.codigo}}</td>
                   <td>{{this.descricao}}</td>
                   <td>{{this.ncm}}</td>
                   <td>{{this.cst}}</td>
@@ -754,7 +797,7 @@
                   <td class="direita">{{this.icms}}</td>
                   <td class="direita">{{this.ipi}}</td>
                   <td class="direita">{{this.porcentagem_icms}}</td>
-                  <td class="direita">{{this.porcentagem_ipi}}</td>
+                  <td class="direita {{#if @last}}bottom-right-round{{/if}}">{{this.porcentagem_ipi}}</td>
                 </tr>
                 {{/each}}
 
@@ -809,8 +852,8 @@
               <div class="column ">
               </div>
             </div>
-            <div class="columns linha quadro_cabecalho">
-              <div class="column  quadro_identificacao">
+            <div class="columns linha quadro_cabecalho all-rounded-corners">
+              <div class="column quadro_identificacao all-rounded-corners">
                 <div class="conteudo_campo">{{../emitente.nome}}</div>
                 <div class="conteudo_campo">{{../emitente.fantasia}}</div>
                 <div class="conteudo_campo">{{../emitente.endereco}}, {{../emitente.numero}}</div>
@@ -818,12 +861,12 @@
                 <div class="conteudo_campo">{{../emitente.bairro}} - {{../emitente.municipio}} / {{../emitente.uf}}</div>
                 <div class="conteudo_campo">CEP:{{../emitente.cep}} - Fone: {{../emitente.telefone}}</div>
               </div>
-              <div class="column quadro_danfe">
+              <div class="column quadro_danfe all-rounded-corners">
                 <div class="center danfe">DANFE</div>
                 <div class="center">DOCUMENTO AUXILIAR DA NOTA FISCAL ELETRÔNICA</div>
                 <br>
                 <span class="numero center">
-                  <div class="center is-pulled-right operacao">{{../operacao}}</div>
+                  <div class="center is-pulled-right operacao all-rounded-corners">{{../operacao}}</div>
                   <div>0- ENTRADA</div>
                   <div>1- SAÍDA</div>
                   <br>
@@ -832,13 +875,13 @@
                   <div>FOLHA {{increaseTwo @index}}/{{../totalPages}}</div>
                 </span>
               </div>
-              <div class="column quadro_codigo_barra">
-                <div class="codigo_barra">barra</div>
-                <div class="chave">
+              <div class="column quadro_codigo_barra all-rounded-corners">
+                <div class="codigo_barra all-rounded-corners">barra</div>
+                <div class="chave all-rounded-corners">
                   <div class="tcampo">CHAVE DE ACESSO</div>
                   {{../chave}}
                 </div>
-                <div class="consulta">
+                <div class="consulta all-rounded-corners">
                   <br> Consulta de autenticidade no portal nacional da NF-e
                   <span style="text-decoration: underline">www.nfe.fazenda.gov.br/portal</span> ou no site da Sefaz Autorizadora
                 </div>
@@ -854,26 +897,26 @@
               <div class="column ">
               </div>
             </div>
-            <div class="columns linha">
-              <div class="column campo">
+            <div class="columns linha all-rounded-corners">
+              <div class="column campo all-rounded-corners">
                 <div class="tcampo">NATUREZA DA OPERAÇÃO</div>
                 <span class="conteudo_campo">{{../natureza}}</span>
               </div>
-              <div class="column protocolo center">
+              <div class="column protocolo center all-rounded-corners">
                 <div class="tcampo">PROTOCOLO DE AUTORIZACAO DE USO </div>
                 <span class="conteudo_campo">{{../protocolo}} - {{../data_protocolo}}</span>
               </div>
             </div>
             <div class="columns linha">
-              <div class="column">
+              <div class="column all-rounded-corners">
                 <div class="tcampo">INSCRIÇÃO ESTADUAL</div>
                 <span class="conteudo_campo">{{../emitente.ie}}</span>
               </div>
-              <div class="column">
+              <div class="column all-rounded-corners">
                 <div class="tcampo">INSCRIÇÃO ESTADUAL DO SUBST. TRIB.</div>
                 <span class="conteudo_campo">{{../emitente.ie_st}}</span>
               </div>
-              <div class="column">
+              <div class="column all-rounded-corners">
                 <div class="tcampo">C.N.P.J.</div>
                 <span class="conteudo_campo">{{../emitente.inscricao_nacional}}</span>
               </div>
@@ -886,18 +929,18 @@
 
     <!-- Itens  -->
     <div class="columns grupo">
-      <div class="column ">
-        <div class="quadro">
+      <div class="column all-rounded-corners">
+        <div class="quadro all-rounded-corners">
           <div class="columns">
             <div class="column bold">
               DADOS DOS PRODUTOS/SERVIÇOS
             </div>
           </div>
-          <div class="columns">
+          <div class="columns all-rounded-corners">
             <table class="table is-bordered itens">
               <thead>
                 <tr>
-                  <th>CÓDIGO</th>
+                  <th class="top-left-round">CÓDIGO</th>
                   <th>DESCRIÇÃO</th>
                   <th>NCM/SH</th>
                   <th>CST</th>
@@ -905,19 +948,18 @@
                   <th>UN.</th>
                   <th>QUANT.</th>
                   <th>V.UNIT.</th>
-                  <th>V.DESC.</th>
                   <th>V.TOTAL</th>
                   <th>BC.ICMS</th>
                   <th>V.ICMS</th>
                   <th>V.IPI</th>
                   <th>%ICMS</th>
-                  <th>%IPI</th>
+                  <th class="top-right-round">%IPI</th>
                 </tr>
               </thead>
               <tbody>
                 {{#each this}}
                 <tr>
-                  <td>{{this.codigo}}</td>
+                  <td class="{{#if @last}}bottom-left-round{{/if}}">{{this.codigo}}</td>
                   <td>{{this.descricao}}</td>
                   <td>{{this.ncm}}</td>
                   <td>{{this.cst}}</td>
@@ -925,13 +967,12 @@
                   <td>{{this.unidade}}</td>
                   <td class="direita">{{this.quantidade}}</td>
                   <td class="direita">{{this.valor}}</td>
-                  <td class="direita">{{this.desconto}}</td>
                   <td class="direita">{{this.total}}</td>
                   <td class="direita">{{this.base_calculo}}</td>
                   <td class="direita">{{this.icms}}</td>
                   <td class="direita">{{this.ipi}}</td>
                   <td class="direita">{{this.porcentagem_icms}}</td>
-                  <td class="direita">{{this.porcentagem_ipi}}</td>
+                  <td class="direita {{#if @last}}bottom-right-round{{/if}}">{{this.porcentagem_ipi}}</td>
                 </tr>
                 {{/each}}
 
@@ -947,21 +988,21 @@
 
        <!-- Dados adicionais  -->
     <div class="columns grupo">
-      <div class="column ">
-        <div class="quadro">
+      <div class="column">
+        <div class="quadro all-rounded-corners">
           <div class="columns">
             <div class="column bold">
               DADOS ADICIONAIS
             </div>
           </div>
-          <div class="columns linha complemento">
-            <div class="column">
+          <div class="columns linha complemento all-rounded-corners">
+            <div class="column all-rounded-corners">
               <div class="tcampo">INFORMAÇÕES COMPLEMENTARES</div>
               <span class="conteudo_campo">{{informacoes_fisco}}</span>
               <span class="conteudo_campo">{{informacoes_complementares}}</span>
               <span class="conteudo_campo">{{observacao}}</span>
             </div>
-            <div class="column fisco">
+            <div class="column fisco all-rounded-corners">
               <div class="tcampo">RESERVADO AO FISCO</div>
             </div>
           </div>
