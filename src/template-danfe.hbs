@@ -371,6 +371,14 @@
     font-size: 10pt;
   }
 
+  .font-8 {
+    font-size: 8pt;
+  }
+
+  .font-6 {
+    font-size: 6pt;
+  }
+
   .reset-marpads {
     margin: 0;
     padding: 0;
@@ -437,12 +445,13 @@
             </div>
             <div class="columns linha quadro_cabecalho all-rounded-corners">
               <div class="column quadro_identificacao all-rounded-corners">
-                <div class="conteudo_campo">{{emitente.nome}}</div>
-                <div class="conteudo_campo">{{emitente.fantasia}}</div>
-                <div class="conteudo_campo">{{emitente.endereco}}, {{emitente.numero}}</div>
-                <div class="conteudo_campo">{{emitente.complemento}}</div>
-                <div class="conteudo_campo">{{emitente.bairro}} - {{emitente.municipio}} / {{emitente.uf}}</div>
-                <div class="conteudo_campo">CEP:{{emitente.cep}} - Fone: {{emitente.telefone}}</div>
+                <div class="conteudo_campo font-6 center">IDENTIFICAÇÃO DO EMITENTE</div>
+                <div class="conteudo_campo font-10 center">{{emitente.nome}}</div>
+                <div class="conteudo_campo font-10 center">{{emitente.fantasia}}</div>
+                <div class="conteudo_campo font-10 center">{{emitente.endereco}}, {{emitente.numero}}</div>
+                <div class="conteudo_campo font-10 center">{{emitente.complemento}}</div>
+                <div class="conteudo_campo font-10 center">{{emitente.bairro}} - {{emitente.municipio}} / {{emitente.uf}}</div>
+                <div class="conteudo_campo font-10 center">CEP:{{emitente.cep}} - Fone: {{emitente.telefone}}</div>
               </div>
               <div class="column quadro_danfe all-rounded-corners">
                 <div class="center danfe">DANFE</div>
@@ -459,7 +468,9 @@
                 </span>
               </div>
               <div class="column quadro_codigo_barra all-rounded-corners">
-                <div class="codigo_barra all-rounded-corners">barra</div>
+                <div class="codigo_barra all-rounded-corners">
+                  <img src='https://cdn.shopify.com/s/files/1/0788/9687/articles/codigo-de-barras_large_6d4cdff8-6bb1-4701-a178-3ec259c52295.jpg?v=1454178323' witdh='300px' height="33px"/>
+                </div>
                 <div class="chave all-rounded-corners">
                   <div class="tcampo">CHAVE DE ACESSO</div>
                   {{chave}}
