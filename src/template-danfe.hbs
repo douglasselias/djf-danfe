@@ -339,13 +339,12 @@
 
   .dashed {
     width: 100%;
-    height: 1px;
     border: 1px dashed rgba(128, 128, 128, 0.5);
-    margin: 5px 0;
+    margin: 5px 0 10px;
   }
 
   .top-left-round {
-border-radius: 5px 0 0 0;
+    border-radius: 5px 0 0 0;
   }
 
   .top-right-round {
@@ -375,6 +374,7 @@ border-radius: 5px 0 0 0;
   .reset-marpads {
     margin: 0;
     padding: 0;
+    line-height: 1;
   }
 </style>
 
@@ -416,14 +416,15 @@ border-radius: 5px 0 0 0;
           <div class="columns linha all-rounded-corners">
             <div class="column area_canhoto_nr all-rounded-corners">
               <div class="center font-14">NF-e</div>
-              <div class="center font-10 reset-marpads">Nº {{numero}}<br/> SÉRIE: {{serie}}</div>
+              <div class="center font-10 reset-marpads">Nº {{numero}}</div>
+              <div class="center font-10 reset-marpads">Série: {{serie}}</div>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="dashed"></div>
+    <hr class="dashed"/>
 
     <!-- Cabeçalho  -->
     <div class="cabecalho">
@@ -431,7 +432,7 @@ border-radius: 5px 0 0 0;
         <div class="column ">
           <div class="quadro">
             <div class="columns">
-              <div class="column ">
+              <div class="column">
               </div>
             </div>
             <div class="columns linha quadro_cabecalho all-rounded-corners">
