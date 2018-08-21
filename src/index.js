@@ -316,6 +316,10 @@ function renderHtml(data) {
     {numero: '1000070718',vencimento: '25/04/18', valor: 'R$ 1500,12'},
   ]
 
+  data.emitente.ie_st = '748110460119'
+  data.destinatario.ie = '748110460119'
+  data.hora_saida = '21:30:22'
+
   const moreData = {
     itemsPerPage,
     firstPageItems,
