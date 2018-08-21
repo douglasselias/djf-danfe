@@ -296,10 +296,7 @@ function renderHtml(data) {
 
     return chunks
   }
-  const itemsPerPage = 35
-
-  // const arrayItems = chunks(data.itens, itemsPerPage)
-  // const firstPageItems = arrayItems.shift()
+  const itemsPerPage = 30
 
   const firstPageItems = data.itens.slice(0, itemsPerPage)
   const arrayItems = data.itens.slice(itemsPerPage)
@@ -309,16 +306,38 @@ function renderHtml(data) {
   const totalPages = pageItems.length + 1
 
   const duplicatas = [
-    {numero: '1000070718',vencimento: '25/04/18', valor: 'R$ 1500,12'},
-    {numero: '1000070718',vencimento: '25/04/18', valor: 'R$ 1500,12'},
-    {numero: '1000070718',vencimento: '25/04/18', valor: 'R$ 1500,12'},
-    {numero: '1000070718',vencimento: '25/04/18', valor: 'R$ 1500,12'},
-    {numero: '1000070718',vencimento: '25/04/18', valor: 'R$ 1500,12'},
+    { numero: '1000070718', vencimento: '25/04/18', valor: 'R$ 1500,12' },
+    { numero: '1000070718', vencimento: '25/04/18', valor: 'R$ 1500,12' },
+    { numero: '1000070718', vencimento: '25/04/18', valor: 'R$ 1500,12' },
+    { numero: '1000070718', vencimento: '25/04/18', valor: 'R$ 1500,12' },
+    { numero: '1000070718', vencimento: '25/04/18', valor: 'R$ 1500,12' },
   ]
+
+  // console.log(JSON.stringify(data, null, 2))
 
   data.emitente.ie_st = '748110460119'
   data.destinatario.ie = '748110460119'
   data.hora_saida = '21:30:22'
+  data.transportador.nome = 'TRANSPORTE RÁPIDO LTDA'
+  data.veiculo_antt = '123456'
+  data.veiculo_placa = 'ABC-1234'
+  data.veiculo_placa_uf = 'SP'
+  data.transportador.inscricao_nacional = '65.019.499/0001-24'
+  data.transportador.endereco = 'Avenida João Jorge'
+  data.transportador.numero = '65'
+  data.transportador.municipio = 'Campinas'
+  data.transportador.uf = 'SP'
+  data.transportador.ie = '748110460119'
+  data.volume_quantidade = '100'
+  data.volume_especie = '200'
+  data.volume_marca = 'MARCA'
+  data.volume_numeracao = '123456789'
+  data.volume_pesoBruto = '500'
+  data.volume_pesoLiquido = '200'
+  data.inscricao_municipal = '200'
+  data.total_servico = '200'
+  data.base_calculo_issqn = '200'
+  data.total_issqn = '200'
 
   const moreData = {
     itemsPerPage,
