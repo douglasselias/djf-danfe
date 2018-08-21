@@ -79,6 +79,13 @@
     width: 8.33333%;
   }
 
+  .column.is-2 {
+    -webkit-box-flex: 0;
+    -ms-flex: none;
+    flex: none;
+    width: 16%;
+  }
+
   span {
     font-style: inherit;
     font-weight: inherit;
@@ -384,6 +391,49 @@
     padding: 0;
     line-height: 1;
   }
+
+  .reset-font {
+    font-weight: normal;
+  }
+
+  .align-left {
+    text-align: left;
+  }
+
+  .margin-left {
+    margin-left: 3px;
+  }
+
+  .italic {
+    font-style: italic;
+  }
+
+  .perfect-center {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .flex-column {
+    flex-direction: column;
+  }
+
+  .linha-menor {
+    height: 27px;
+  }
+
+  .bg-cover {
+    width: 90%;
+    height: 90%;
+    background-size: 100% 100%;
+    margin: 5px;
+  }
+
+  .bold {
+    font-weight: bold;
+  }
 </style>
 
 <body>
@@ -407,10 +457,10 @@
           </div>
           <div class="columns linha">
             <div class="column all-rounded-corners padding-top">
-              <div class="tcampo">DATA DE RECEBIMENTO</div>
+              <div class="tcampo reset-font">DATA DE RECEBIMENTO</div>
             </div>
             <div class="column canhoto_assinatura all-rounded-corners padding-top">
-              <div class="tcampo">IDENTIFICAÇÃO E ASSINATURA DO RECEBEDOR</div>
+              <div class="tcampo reset-font">IDENTIFICAÇÃO E ASSINATURA DO RECEBEDOR</div>
             </div>
           </div>
         </div>
@@ -445,39 +495,45 @@
             </div>
             <div class="columns linha quadro_cabecalho all-rounded-corners">
               <div class="column quadro_identificacao all-rounded-corners">
-                <div class="conteudo_campo font-6 center">IDENTIFICAÇÃO DO EMITENTE</div>
-                <div class="conteudo_campo font-10 center">{{emitente.nome}}</div>
-                <div class="conteudo_campo font-10 center">{{emitente.fantasia}}</div>
-                <div class="conteudo_campo font-10 center">{{emitente.endereco}}, {{emitente.numero}}</div>
-                <div class="conteudo_campo font-10 center">{{emitente.complemento}}</div>
-                <div class="conteudo_campo font-10 center">{{emitente.bairro}} - {{emitente.municipio}} / {{emitente.uf}}</div>
-                <div class="conteudo_campo font-10 center">CEP:{{emitente.cep}} - Fone: {{emitente.telefone}}</div>
+                <div class="conteudo_campo font-6 center reset-font">IDENTIFICAÇÃO DO EMITENTE</div>
+                <div class="perfect-center flex-column">
+                  <div class="conteudo_campo font-10 center reset-marpads">{{emitente.nome}}</div>
+                  <div class="conteudo_campo font-6 center reset-font reset-marpads">{{emitente.fantasia}}</div>
+                  <div class="conteudo_campo font-6 center reset-font reset-marpads">{{emitente.endereco}}, {{emitente.numero}}</div>
+                  <div class="conteudo_campo font-6 center reset-font reset-marpads">{{emitente.complemento}}</div>
+                  <div class="conteudo_campo font-6 center reset-font reset-marpads">{{emitente.bairro}} - {{emitente.municipio}} / {{emitente.uf}}</div>
+                  <div class="conteudo_campo font-6 center reset-font reset-marpads">{{emitente.cep}} - Fone: {{emitente.telefone}}</div>
+                </div>
               </div>
-              <div class="column quadro_danfe all-rounded-corners">
-                <div class="center danfe">DANFE</div>
-                <div class="center">DOCUMENTO AUXILIAR DA NOTA FISCAL ELETRÔNICA</div>
+
+              <div class="column quadro_danfe all-rounded-corners padding-top">
+                <div class="center danfe font-14">DANFE</div>
+                <div class="center font-6">Documento Auxiliar da Nota Fiscal Eletrônica</div>
+
                 <br>
                 <span class="numero center">
                   <div class="center is-pulled-right operacao all-rounded-corners">{{operacao}}</div>
-                  <div>0- ENTRADA</div>
-                  <div>1- SAÍDA</div>
+                  <div class="align-left margin-left">
+                    <div class="reset-font">0- ENTRADA</div>
+                    <div class="reset-font">1- SAÍDA</div>
+                  </div>
                   <br>
                   <div>Nº {{numero}}</div>
-                  <div>SÉRIE {{serie}}</div>
-                  <div>FOLHA 1/{{totalPages}}</div>
+                  <div>Série {{serie}}</div>
+                  <div class="reset-font italic">Folha 1/{{totalPages}}</div>
                 </span>
               </div>
               <div class="column quadro_codigo_barra all-rounded-corners">
                 <div class="codigo_barra all-rounded-corners">
-                  <img src='https://cdn.shopify.com/s/files/1/0788/9687/articles/codigo-de-barras_large_6d4cdff8-6bb1-4701-a178-3ec259c52295.jpg?v=1454178323' witdh='300px' height="33px"/>
+                  <img src='https://cdn.shopify.com/s/files/1/0788/9687/articles/codigo-de-barras_large_6d4cdff8-6bb1-4701-a178-3ec259c52295.jpg?v=1454178323' class="bg-cover"/>
                 </div>
                 <div class="chave all-rounded-corners">
-                  <div class="tcampo">CHAVE DE ACESSO</div>
-                  {{chave}}
+                  <div class="tcampo reset-font">CHAVE DE ACESSO</div>
+                  <div class="padding-top">{{chave}}</div>
                 </div>
                 <div class="consulta all-rounded-corners">
                   <br> Consulta de autenticidade no portal nacional da NF-e
-                  <span style="text-decoration: underline">www.nfe.fazenda.gov.br/portal</span> ou no site da Sefaz Autorizadora
+                  www.nfe.fazenda.gov.br/portal ou no site da Sefaz Autorizadora
                 </div>
               </div>
             </div>
@@ -492,27 +548,27 @@
               </div>
             </div>
             <div class="columns linha all-rounded-corners">
-              <div class="column campo all-rounded-corners">
-                <div class="tcampo">NATUREZA DA OPERAÇÃO</div>
-                <span class="conteudo_campo">{{natureza}}</span>
+              <div class="column campo all-rounded-corners padding-top center">
+                <div class="tcampo reset-font">NATUREZA DA OPERAÇÃO</div>
+                <span class="conteudo_campo bold">{{natureza}}</span>
               </div>
               <div class="column protocolo center all-rounded-corners">
-                <div class="tcampo">PROTOCOLO DE AUTORIZACAO DE USO </div>
-                <span class="conteudo_campo">{{protocolo}} - {{data_protocolo}}</span>
+                <div class="tcampo reset-font">PROTOCOLO DE AUTORIZACAO DE USO </div>
+                <span class="conteudo_campo bold padding-top">{{protocolo}} - {{data_protocolo}}</span>
               </div>
             </div>
             <div class="columns linha">
-              <div class="column all-rounded-corners">
-                <div class="tcampo">INSCRIÇÃO ESTADUAL</div>
-                <span class="conteudo_campo">{{emitente.ie}}</span>
+              <div class="column all-rounded-corners center padding-top">
+                <div class="tcampo reset-font">INSCRIÇÃO ESTADUAL</div>
+                <span class="conteudo_campo bold">{{emitente.ie}}</span>
               </div>
-              <div class="column all-rounded-corners">
-                <div class="tcampo">INSCRIÇÃO ESTADUAL DO SUBST. TRIB.</div>
-                <span class="conteudo_campo">{{emitente.ie_st}}</span>
+              <div class="column all-rounded-corners center padding-top">
+                <div class="tcampo reset-font">INSCRIÇÃO ESTADUAL DO SUBST. TRIB.</div>
+                <span class="conteudo_campo bold">{{emitente.ie_st}}</span>
               </div>
-              <div class="column all-rounded-corners">
-                <div class="tcampo">C.N.P.J.</div>
-                <span class="conteudo_campo">{{emitente.inscricao_nacional}}</span>
+              <div class="column all-rounded-corners center padding-top">
+                <div class="tcampo reset-font">CNPJ</div>
+                <span class="conteudo_campo bold">{{emitente.inscricao_nacional}}</span>
               </div>
             </div>
           </div>
@@ -524,63 +580,63 @@
     <div class="columns grupo">
       <div class="column ">
         <div class="quadro all-rounded-corners">
-          <div class="columns">
+          <div class="columns padding-top">
             <div class="column bold">
               DESTINATÁRIO/REMETENTE
             </div>
           </div>
           <div class="columns linha all-rounded-corners">
-            <div class="column all-rounded-corners">
-              <div class="tcampo">NOME/RAZÃO SOCIAL</div>
-              <span class="conteudo_campo">{{destinatario.nome}}</span>
+            <div class="column all-rounded-corners padding-top">
+              <div class="tcampo reset-font">NOME/RAZÃO SOCIAL</div>
+              <span class="conteudo_campo bold">{{destinatario.nome}}</span>
             </div>
-            <div class="column all-rounded-corners">
-              <div class="tcampo">C.N.P.J./C.P.F.</div>
-              <span class="conteudo_campo">{{destinatario.inscricao_nacional}}</span>
+            <div class="column is-2 all-rounded-corners center padding-top">
+              <div class="tcampo reset-font">CNPJ/CPF</div>
+              <span class="conteudo_campo bold">{{destinatario.inscricao_nacional}}</span>
             </div>
-            <div class="column data all-rounded-corners">
-              <div class="tcampo">DATA DA EMISSÃO</div>
-              <span class="conteudo_campo">{{data_emissao}}</span>
+            <div class="column data all-rounded-corners center padding-top">
+              <div class="tcampo reset-font">DATA DA EMISSÃO</div>
+              <span class="conteudo_campo bold">{{data_emissao}}</span>
             </div>
           </div>
           <div class="columns linha all-rounded-corners">
-            <div class="column all-rounded-corners">
-              <div class="tcampo">ENDEREÇO</div>
-              <span class="conteudo_campo">{{destinatario.endereco}}, {{destinatario.numero}}</span>
+            <div class="column all-rounded-corners padding-top">
+              <div class="tcampo reset-font">ENDEREÇO</div>
+              <span class="conteudo_campo bold">{{destinatario.endereco}}, {{destinatario.numero}}</span>
             </div>
-            <div class="column all-rounded-corners">
-              <div class="tcampo ">BAIRRO/DISTRITO</div>
-              <span class="conteudo_campo">{{destinatario.bairro}}</span>
+            <div class="column all-rounded-corners center padding-top">
+              <div class="tcampo reset-font">BAIRRO/DISTRITO</div>
+              <span class="conteudo_campo bold">{{destinatario.bairro}}</span>
             </div>
-            <div class="column all-rounded-corners">
-              <div class="tcampo">CEP</div>
-              <span class="conteudo_campo">{{destinatario.cep}}</span>
+            <div class="column all-rounded-corners center padding-top">
+              <div class="tcampo reset-font">CEP</div>
+              <span class="conteudo_campo bold">{{destinatario.cep}}</span>
             </div>
-            <div class="column data all-rounded-corners">
-              <div class="tcampo">DATA SAÍDA/ENTRADA</div>
-              <span class="conteudo_campo">{{data_saida}}</span>
+            <div class="column data all-rounded-corners center padding-top">
+              <div class="tcampo reset-font">DATA SAÍDA/ENTRADA</div>
+              <span class="conteudo_campo bold">{{data_saida}}</span>
             </div>
           </div>
           <div class="columns linha">
-            <div class="column all-rounded-corners">
-              <div class="tcampo">MUNICÍPIO</div>
-              <span class="conteudo_campo">{{destinatario.municipio}}</span>
+            <div class="column all-rounded-corners padding-top">
+              <div class="tcampo reset-font">MUNICÍPIO</div>
+              <span class="conteudo_campo bold">{{destinatario.municipio}}</span>
             </div>
-            <div class="column all-rounded-corners">
-              <div class="tcampo">FONE/FAX</div>
-              <span class="conteudo_campo">{{destinatario.telefone}}</span>
+            <div class="column uf all-rounded-corners center padding-top">
+              <div class="tcampo reset-font">UF</div>
+              <span class="conteudo_campo bold">{{destinatario.uf}}</span>
             </div>
-            <div class="column uf all-rounded-corners">
-              <div class="tcampo">UF</div>
-              <span class="conteudo_campo">{{destinatario.uf}}</span>
+            <div class="column all-rounded-corners center padding-top">
+              <div class="tcampo reset-font">FONE/FAX</div>
+              <span class="conteudo_campo bold">{{destinatario.telefone}}</span>
             </div>
-            <div class="column all-rounded-corners">
-              <div class="tcampo">INSCRIÇÃO ESTADUAL</div>
-              <span class="conteudo_campo">{{destinatario.ie}}</span>
+            <div class="column all-rounded-corners center padding-top">
+              <div class="tcampo reset-font">INSCRIÇÃO ESTADUAL</div>
+              <span class="conteudo_campo bold">{{destinatario.ie}}</span>
             </div>
-            <div class="column data all-rounded-corners">
-              <div class="tcampo">HORA DA SAÍDA</div>
-              <span class="conteudo_campo">{{hora_saida}}</span>
+            <div class="column data all-rounded-corners center padding-top">
+              <div class="tcampo reset-font">HORA DA SAÍDA</div>
+              <span class="conteudo_campo bold">{{hora_saida}}</span>
             </div>
           </div>
         </div>
@@ -591,23 +647,18 @@
     <div class="columns grupo">
       <div class="column ">
         <div class="quadro duplicatas">
-          <div class="columns">
+          <div class="columns padding-top">
             <div class="column bold">
-              FATURA/DUPLICATAS
+              FATURA/DUPLICATA
             </div>
           </div>
           <div class="columns linha">
-            <div class="column is-1">
-              <div class="tcampo">NÚMERO</div>
-              <div class="tcampo">VENCIMENTO</div>
-              <div class="tcampo">VALOR</div>
-            </div>
             <div class="column">
               {{#each duplicatas}}
-              <div class=" duplicata is-pulled-left">
-                <div>{{this.numero}}</div>
-                <div>{{this.vencimento}}</div>
-                <div>{{this.valor}}</div>
+              <div class=" duplicata is-pulled-left all-rounded-corners">
+                <div>Num. {{this.numero}}</div>
+                <div>Venc. {{this.vencimento}}</div>
+                <div>Valor {{this.valor}}</div>
               </div>
               {{/each}}
             </div>
