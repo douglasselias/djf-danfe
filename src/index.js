@@ -313,8 +313,6 @@ function renderHtml(data) {
     { numero: '1000070718', vencimento: '25/04/18', valor: 'R$ 1500,12' },
   ]
 
-  // console.log(JSON.stringify(data, null, 2))
-
   data.emitente.ie_st = '748110460119'
   data.destinatario.ie = '748110460119'
   data.hora_saida = '21:30:22'
@@ -329,7 +327,7 @@ function renderHtml(data) {
   data.transportador.uf = 'SP'
   data.transportador.ie = '748110460119'
   data.volume_quantidade = '100'
-  data.volume_especie = '200'
+  data.volume_especie = 'ESPECIE'
   data.volume_marca = 'MARCA'
   data.volume_numeracao = '123456789'
   data.volume_pesoBruto = '500'
@@ -338,10 +336,16 @@ function renderHtml(data) {
   data.total_servico = '200'
   data.base_calculo_issqn = '200'
   data.total_issqn = '200'
+  data.storeID = 1036
+
+  const newItems = firstPageItems.map(item=>{
+    item.descricao = 'nome grande do produto abcdefghijklmnopqrstuvxyz abcdefghijklmnopqrstuvxyz abcdefghijklmnopqrstuvxyz abcdefghijklmnopqrstuvxyz abcdefghijklmnopqrstuvxyz'
+    return item
+  })
 
   const moreData = {
     itemsPerPage,
-    firstPageItems,
+    firstPageItems: newItems,
     arrayItems: pageItems,
     totalPages,
     duplicatas
@@ -393,7 +397,10 @@ function getTemplateData(nfe) {
     modalidade_frete: nfe.modalidadeFrete(),
     modalidade_frete_texto: nfe.modalidadeFreteTexto(),
     itens: itens(nfe),
-    duplicatas: duplicatas(nfe)
+    duplicatas: duplicatas(nfe),
+    valor_ii: nfe.valorII(),
+    valor_pis: nfe.valorPIS(),
+    valor_cofins: nfe.valorCOFINS()
   }
 
   if (nfe.transporte().volume()) {

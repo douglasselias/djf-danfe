@@ -410,7 +410,7 @@
   }
 
   .perfect-center {
-    width: 100%;
+    width: 50%;
     height: 100%;
     display: flex;
     justify-content: center;
@@ -427,9 +427,14 @@
 
   .bg-cover {
     width: 90%;
-    height: 90%;
-    background-size: 100% 100%;
-    margin: 5px;
+    height: 75%;
+    padding: 7px 15px;
+  }
+
+  .bg-logo {
+    --size: 45px;
+    width: var(--size);
+    height: var(--size);
   }
 
   .bold {
@@ -461,6 +466,13 @@
     .page-break {
       page-break-after: always;
     }
+  }
+
+  .id-emitente {
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
   }
 </style>
 
@@ -524,13 +536,16 @@
             <div class="columns linha quadro_cabecalho all-rounded-corners">
               <div class="column quadro_identificacao all-rounded-corners">
                 <div class="conteudo_campo font-6 center reset-font">IDENTIFICAÇÃO DO EMITENTE</div>
-                <div class="perfect-center flex-column">
-                  <div class="conteudo_campo font-10 center reset-marpads">{{emitente.nome}}</div>
-                  <div class="conteudo_campo font-6 center reset-font reset-marpads">{{emitente.fantasia}}</div>
-                  <div class="conteudo_campo font-6 center reset-font reset-marpads">{{emitente.endereco}}, {{emitente.numero}}</div>
-                  <div class="conteudo_campo font-6 center reset-font reset-marpads">{{emitente.complemento}}</div>
-                  <div class="conteudo_campo font-6 center reset-font reset-marpads">{{emitente.bairro}} - {{emitente.municipio}} / {{emitente.uf}}</div>
-                  <div class="conteudo_campo font-6 center reset-font reset-marpads">{{emitente.cep}} - Fone: {{emitente.telefone}}</div>
+                <div class="id-emitente">
+                  <img src="https://img.smartpos.net.br/api/images/store/{{storeID}}" class="bg-logo"/>
+                  <div class="perfect-center flex-column">
+                    <div class="conteudo_campo font-10 center reset-marpads">{{emitente.nome}}</div>
+                    <div class="conteudo_campo font-6 center reset-font reset-marpads">{{emitente.fantasia}}</div>
+                    <div class="conteudo_campo font-6 center reset-font reset-marpads">{{emitente.endereco}}, {{emitente.numero}}</div>
+                    <div class="conteudo_campo font-6 center reset-font reset-marpads">{{emitente.complemento}}</div>
+                    <div class="conteudo_campo font-6 center reset-font reset-marpads">{{emitente.bairro}} - {{emitente.municipio}} / {{emitente.uf}}</div>
+                    <div class="conteudo_campo font-6 center reset-font reset-marpads">{{emitente.cep}} - Fone: {{emitente.telefone}}</div>
+                  </div>
                 </div>
               </div>
 
@@ -576,11 +591,11 @@
               </div>
             </div>
             <div class="columns linha all-rounded-corners">
-              <div class="column campo all-rounded-corners padding-top center">
+              <div class="column campo all-rounded-corners padding-top">
                 <div class="tcampo reset-font">NATUREZA DA OPERAÇÃO</div>
                 <span class="conteudo_campo bold">{{natureza}}</span>
               </div>
-              <div class="column protocolo center all-rounded-corners">
+              <div class="column protocolo all-rounded-corners">
                 <div class="tcampo reset-font">PROTOCOLO DE AUTORIZACAO DE USO </div>
                 <span class="conteudo_campo bold padding-top">{{protocolo}} - {{data_protocolo}}</span>
               </div>
@@ -632,7 +647,7 @@
               <div class="tcampo reset-font">ENDEREÇO</div>
               <span class="conteudo_campo bold">{{destinatario.endereco}}, {{destinatario.numero}}</span>
             </div>
-            <div class="column all-rounded-corners center padding-top">
+            <div class="column all-rounded-corners padding-top">
               <div class="tcampo reset-font">BAIRRO/DISTRITO</div>
               <span class="conteudo_campo bold">{{destinatario.bairro}}</span>
             </div>
@@ -650,7 +665,7 @@
               <div class="tcampo reset-font">MUNICÍPIO</div>
               <span class="conteudo_campo bold">{{destinatario.municipio}}</span>
             </div>
-            <div class="column uf all-rounded-corners center padding-top">
+            <div class="column uf all-rounded-corners padding-top">
               <div class="tcampo reset-font">UF</div>
               <span class="conteudo_campo bold">{{destinatario.uf}}</span>
             </div>
@@ -806,11 +821,11 @@
               <div class="tcampo reset-font">RAZÃO SOCIAL</div>
               <span class="conteudo_campo bold">{{transportador.nome}}</span>
             </div>
-            <div class="column all-rounded-corners padding-top center">
+            <div class="column all-rounded-corners padding-top">
               <div class="tcampo reset-font">FRETE POR CONTA</div>
               <span class="conteudo_campo bold">{{modalidade_frete}} - {{modalidade_frete_texto}}</span>
             </div>
-            <div class="column all-rounded-corners padding-top center">
+            <div class="column all-rounded-corners padding-top">
               <div class="tcampo reset-font">CÓDIGO ANTT</div>
               <span class="conteudo_campo bold">{{veiculo_antt}}</span>
             </div>
@@ -818,7 +833,7 @@
               <div class="tcampo reset-font">PLACA DO VEÍCULO</div>
               <span class="conteudo_campo bold">{{veiculo_placa}}</span>
             </div>
-            <div class="column uf all-rounded-corners padding-top center">
+            <div class="column uf all-rounded-corners padding-top">
               <div class="tcampo reset-font">UF</div>
               <span class="conteudo_campo bold">{{veiculo_placa_uf}}</span>
             </div>
@@ -836,11 +851,11 @@
                 {{/if}}
               </span>
             </div>
-            <div class="column all-rounded-corners padding-top center">
+            <div class="column all-rounded-corners padding-top">
               <div class="tcampo reset-font">MUNICÍPIO</div>
               <span class="conteudo_campo bold">{{transportador.municipio}}</span>
             </div>
-            <div class="column uf all-rounded-corners padding-top center">
+            <div class="column uf all-rounded-corners padding-top">
               <div class="tcampo reset-font">UF</div>
               <span class="conteudo_campo bold">{{transportador.uf}}</span>
             </div>
@@ -850,11 +865,11 @@
             </div>
           </div>
           <div class="columns linha">
-            <div class="column direita all-rounded-corners padding-top center">
+            <div class="column direita all-rounded-corners padding-top">
               <div class="tcampo reset-font">QUANTIDADE</div>
               <span class="conteudo_campo bold">{{volume_quantidade}}</span>
             </div>
-            <div class="column all-rounded-corners padding-top center">
+            <div class="column all-rounded-corners padding-top">
               <div class="tcampo reset-font">ESPÉCIE</div>
               <span class="conteudo_campo bold">{{volume_especie}}</span>
             </div>
@@ -935,38 +950,6 @@
         </div>
       </div>
     </div>
-    <!-- Serviço  -->
-    {{#if total_servico}}
-    <div class="columns grupo">
-      <div class="column ">
-        <div class="quadro">
-          <div class="columns">
-            <div class="column bold">
-              CÁLCULO DO ISSQN
-            </div>
-          </div>
-          <div class="columns linha all-rounded-corners">
-            <div class="column padding-top all-rounded-corners center">
-              <div class="tcampo">INSCRIÇÃO MUNICIPAL</div>
-              <span class="conteudo_campo">{{inscricao_municipal}}</span>
-            </div>
-            <div class="column padding-top all-rounded-corners center">
-              <div class="tcampo">VALOR TOTAL DOS SERVIÇOS</div>
-              <div class="conteudo_campo direita">{{total_servico}}</div>
-            </div>
-            <div class="column padding-top all-rounded-corners center">
-              <div class="tcampo">BASE DE CÁLCULO DO ISSQN</div>
-              <div class="conteudo_campo direita">{{base_calculo_issqn}}</div>
-            </div>
-            <div class="column padding-top all-rounded-corners center">
-              <div class="tcampo">VALOR DO ISSQN</div>
-              <div class="conteudo_campo direita">{{total_issqn}}</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    {{/if}}
 
     <div class="page-break"></div>
 
@@ -985,13 +968,16 @@
             <div class="columns linha quadro_cabecalho all-rounded-corners">
               <div class="column quadro_identificacao all-rounded-corners">
                 <div class="conteudo_campo font-6 center reset-font">IDENTIFICAÇÃO DO EMITENTE</div>
-                <div class="perfect-center flex-column">
-                  <div class="conteudo_campo font-10 center reset-marpads">{{../emitente.nome}}</div>
-                  <div class="conteudo_campo font-6 center reset-font reset-marpads">{{../emitente.fantasia}}</div>
-                  <div class="conteudo_campo font-6 center reset-font reset-marpads">{{../emitente.endereco}}, {{../emitente.numero}}</div>
-                  <div class="conteudo_campo font-6 center reset-font reset-marpads">{{../emitente.complemento}}</div>
-                  <div class="conteudo_campo font-6 center reset-font reset-marpads">{{../emitente.bairro}} - {{../emitente.municipio}} / {{../emitente.uf}}</div>
-                  <div class="conteudo_campo font-6 center reset-font reset-marpads">{{../emitente.cep}} - Fone: {{../emitente.telefone}}</div>
+                <div class="id-emitente">
+                  <img src="https://img.smartpos.net.br/api/images/store/{{../storeID}}" class="bg-logo"/>
+                  <div class="perfect-center flex-column">
+                    <div class="conteudo_campo font-10 center reset-marpads">{{../emitente.nome}}</div>
+                    <div class="conteudo_campo font-6 center reset-font reset-marpads">{{../emitente.fantasia}}</div>
+                    <div class="conteudo_campo font-6 center reset-font reset-marpads">{{../emitente.endereco}}, {{../emitente.numero}}</div>
+                    <div class="conteudo_campo font-6 center reset-font reset-marpads">{{../emitente.complemento}}</div>
+                    <div class="conteudo_campo font-6 center reset-font reset-marpads">{{../emitente.bairro}} - {{../emitente.municipio}} / {{../emitente.uf}}</div>
+                    <div class="conteudo_campo font-6 center reset-font reset-marpads">{{../emitente.cep}} - Fone: {{../emitente.telefone}}</div>
+                  </div>
                 </div>
               </div>
 
@@ -1037,7 +1023,7 @@
               </div>
             </div>
             <div class="columns linha all-rounded-corners">
-              <div class="column campo all-rounded-corners padding-top center">
+              <div class="column campo all-rounded-corners padding-top">
                 <div class="tcampo reset-font">NATUREZA DA OPERAÇÃO</div>
                 <span class="conteudo_campo bold">{{../natureza}}</span>
               </div>
@@ -1130,6 +1116,39 @@
     {{/each}} 
 
     {{/ifCond}}
+
+     <!-- Serviço  -->
+    {{#if total_servico}}
+    <div class="columns grupo">
+      <div class="column ">
+        <div class="quadro">
+          <div class="columns">
+            <div class="column bold">
+              CÁLCULO DO ISSQN
+            </div>
+          </div>
+          <div class="columns linha all-rounded-corners">
+            <div class="column padding-top all-rounded-corners center">
+              <div class="tcampo">INSCRIÇÃO MUNICIPAL</div>
+              <span class="conteudo_campo">{{inscricao_municipal}}</span>
+            </div>
+            <div class="column padding-top all-rounded-corners center">
+              <div class="tcampo">VALOR TOTAL DOS SERVIÇOS</div>
+              <div class="conteudo_campo direita">{{total_servico}}</div>
+            </div>
+            <div class="column padding-top all-rounded-corners center">
+              <div class="tcampo">BASE DE CÁLCULO DO ISSQN</div>
+              <div class="conteudo_campo direita">{{base_calculo_issqn}}</div>
+            </div>
+            <div class="column padding-top all-rounded-corners center">
+              <div class="tcampo">VALOR DO ISSQN</div>
+              <div class="conteudo_campo direita">{{total_issqn}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{/if}}
 
        <!-- Dados adicionais  -->
     <div class="columns grupo">

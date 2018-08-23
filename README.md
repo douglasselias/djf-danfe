@@ -1,7 +1,7 @@
 # djf-danfe
 [![Build Status](https://travis-ci.org/djalmaoliveira/djf-danfe.svg?branch=master)](https://travis-ci.org/djalmaoliveira/djf-danfe) ![Version](https://img.shields.io/npm/v/djf-danfe.svg)
 
-Visualizador de DANFE (Documento Auxiliar Da Nota Fiscal Eletrônica) em html.
+Visualizador de DANFE (Documento Auxiliar Da Nota Fiscal Eletrônica) em HTML.
 
 ## Preparação
 
@@ -12,14 +12,14 @@ NodeJS 8.x
 ### Instalação
 
 ```
-npm install djf-danfe
+npm i -S douglasselias/djf-danfe
 ```
 
 ### Exemplos
 
 ```
-const Danfe = require('djf-danfe')
-var danfe = Danfe.fromXML('conteudo XML')
+const djf_danfe = require('djf-danfe')
+const danfe = djf_danfe.fromXML('conteudo XML')
 console.log(danfe.toHtml())
 ```
 
@@ -30,14 +30,14 @@ console.log(danfe.toHtml())
 
 ### Funções
 
-* Criar representação do DANFE em html baseado somente em um arquivo XML existente.
+* Criar representação do DANFE em HTML baseado somente em um arquivo XML existente.
 * Criar a representação somente no formato retrato.
+* Possui contagem do número de folhas.
 
 ### Limitações
 
 * Não converte para outros formatos como pdf e imagens (basta usar um conversor externo, ex.: [node-wkhtmltopdf](https://github.com/devongovett/node-wkhtmltopdf)).
 * Não valida os valores dos campos da NFE.
-* (TODO) Não possui contagem do número de folhas.
 * (TODO) Não possui geração do código de barras.
 * (TODO) Não possui quebra do número de folhas de acordo com a quantidade de itens.
 * (TODO) Não possui a representação em formato paisagem.
