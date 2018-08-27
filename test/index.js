@@ -53,7 +53,7 @@ module.exports.fromXMLTest = (test) => {
   const expectedNumero = '<div>Nº 1054</div>'
 
   // fromXML
-  danfe = fromXML(xml)
+  danfe = fromXML(xml, 1036)
   test.ok(danfe.toHtml())
 
   // fromNFe
@@ -72,7 +72,7 @@ module.exports.fromXMLTest = (test) => {
 
   const pathTemp = mkdtempSync('tmp/d') + '/file.xml'
   writeFileSync(pathTemp, xml)
-  danfe = fromFile(pathTemp)
+  danfe = fromFile(pathTemp, 1036)
   html = danfe.toHtml()
   test.ok(html)
   test.ok(html.indexOf(expectedNumero) !== -1)

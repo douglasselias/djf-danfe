@@ -282,77 +282,8 @@ function renderHtml(data) {
     return options.inverse(this)
   })
 
-  handlebars.registerHelper('increaseTwo', function (value) {
-    return parseInt(value) + 2
-  })
-
-  const chunks = (array, length) => {
-    const chunks = [], n = array.length
-    let i = 0
-
-    while (i < n) {
-      chunks.push(array.slice(i, (i += length)));
-    }
-
-    return chunks
-  }
-  const itemsPerPage = 30
-
-  const firstPageItems = data.itens.slice(0, itemsPerPage)
-  const arrayItems = data.itens.slice(itemsPerPage)
-
-  const double34 = [...arrayItems, ...arrayItems]
-  const pageItems = chunks(double34, 60)
-  const totalPages = pageItems.length + 1
-
-  const duplicatas = [
-    { numero: '1000070718', vencimento: '25/04/18', valor: 'R$ 1500,12' },
-    { numero: '1000070718', vencimento: '25/04/18', valor: 'R$ 1500,12' },
-    { numero: '1000070718', vencimento: '25/04/18', valor: 'R$ 1500,12' },
-    { numero: '1000070718', vencimento: '25/04/18', valor: 'R$ 1500,12' },
-    { numero: '1000070718', vencimento: '25/04/18', valor: 'R$ 1500,12' },
-  ]
-
-  data.emitente.ie_st = '748110460119'
-  data.destinatario.ie = '748110460119'
-  data.hora_saida = '21:30:22'
-  data.transportador.nome = 'TRANSPORTE RÁPIDO LTDA'
-  data.veiculo_antt = '123456'
-  data.veiculo_placa = 'ABC-1234'
-  data.veiculo_placa_uf = 'SP'
-  data.transportador.inscricao_nacional = '65.019.499/0001-24'
-  data.transportador.endereco = 'Avenida João Jorge'
-  data.transportador.numero = '65'
-  data.transportador.municipio = 'Campinas'
-  data.transportador.uf = 'SP'
-  data.transportador.ie = '748110460119'
-  data.volume_quantidade = '100'
-  data.volume_especie = 'ESPECIE'
-  data.volume_marca = 'MARCA'
-  data.volume_numeracao = '123456789'
-  data.volume_pesoBruto = '500'
-  data.volume_pesoLiquido = '200'
-  data.inscricao_municipal = '200'
-  data.total_servico = '200'
-  data.base_calculo_issqn = '200'
-  data.total_issqn = '200'
-  data.storeID = 1036
-
-  const newItems = firstPageItems.map(item => {
-    item.descricao = 'nome grande do produto abcdefghijklmnopqrstuvxyz abcdefghijklmnopqrstuvxyz abcdefghijklmnopqrstuvxyz abcdefghijklmnopqrstuvxyz abcdefghijklmnopqrstuvxyz'
-    return item
-  })
-
-  const moreData = {
-    itemsPerPage,
-    firstPageItems: newItems,
-    arrayItems: pageItems,
-    totalPages,
-    duplicatas
-  }
-
   const template = fs.readFileSync(TEMPLATE_DANFE, 'utf8')
-  return handlebars.compile(template)({ ...data, ...moreData })
+  return handlebars.compile(template)(data)
 }
 
 /**
@@ -361,7 +292,7 @@ function renderHtml(data) {
  * @param      {object}  nfe     djf-nfe
  * @return     {object}
  */
-function getTemplateData(nfe) {
+function getTemplateData(nfe, storeID) {
   if (!nfe) {
     return null
   }
@@ -398,13 +329,14 @@ function getTemplateData(nfe) {
     modalidade_frete_texto: nfe.modalidadeFreteTexto(),
     itens: itens(nfe),
     duplicatas: duplicatas(nfe),
-    valor_ii: formataMoeda(nfe.valorII(),2),
-    valor_pis: formataMoeda(nfe.valorPIS(),2),
+    valor_ii: formataMoeda(nfe.valorII(), 2),
+    valor_pis: formataMoeda(nfe.valorPIS(), 2),
     valor_cofins: formataMoeda(nfe.valorCOFINS(), 2),
     codigo_barras: nfe.chave(),
     valor_combate_pobreza: formataMoeda(nfe.valorCombatePobreza(), 2),
     valor_icms_uf_remetente: formataMoeda(nfe.valorIcmsUfRemetente(), 2),
-    valor_icms_uf_destinatario: formataMoeda(nfe.valorIcmsUfDestinatario(), 2)
+    valor_icms_uf_destinatario: formataMoeda(nfe.valorIcmsUfDestinatario(), 2),
+    storeID
   }
 
   if (nfe.transporte().volume()) {
@@ -438,9 +370,9 @@ function getTemplateData(nfe) {
  * @param      {<type>}  nfe     djf-nfe
  * @return     {Object}  { description_of_the_return_value }
  */
-function model(nfe) {
+function model(nfe, storeID) {
   return {
-    toHtml: () => renderHtml(getTemplateData(nfe))
+    toHtml: () => renderHtml(getTemplateData(nfe, storeID))
   }
 }
 
@@ -463,11 +395,11 @@ module.exports.fromNFe = function (nfe) {
  * @param      {string}  xml
  * @return     {<object>}
  */
-module.exports.fromXML = function (xml) {
+module.exports.fromXML = function (xml, storeID) {
   if (!xml || typeof xml !== 'string') {
     return model(null)
   }
-  return model(NFe(xml))
+  return model(NFe(xml), storeID)
 }
 
 /**
@@ -476,7 +408,7 @@ module.exports.fromXML = function (xml) {
  * @param      {string}  filePath
  * @return     {<object>}
  */
-module.exports.fromFile = function (filePath) {
+module.exports.fromFile = function (filePath, storeID) {
   var content = ''
 
   if (!filePath || typeof filePath !== 'string') {
@@ -489,5 +421,5 @@ module.exports.fromFile = function (filePath) {
     throw new Error('File not found: ' + filePath + ' => ' + err.message)
   }
 
-  return module.exports.fromXML(content)
+  return module.exports.fromXML(content, storeID)
 }
