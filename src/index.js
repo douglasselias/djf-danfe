@@ -338,7 +338,7 @@ function renderHtml(data) {
   data.total_issqn = '200'
   data.storeID = 1036
 
-  const newItems = firstPageItems.map(item=>{
+  const newItems = firstPageItems.map(item => {
     item.descricao = 'nome grande do produto abcdefghijklmnopqrstuvxyz abcdefghijklmnopqrstuvxyz abcdefghijklmnopqrstuvxyz abcdefghijklmnopqrstuvxyz abcdefghijklmnopqrstuvxyz'
     return item
   })
@@ -398,13 +398,13 @@ function getTemplateData(nfe) {
     modalidade_frete_texto: nfe.modalidadeFreteTexto(),
     itens: itens(nfe),
     duplicatas: duplicatas(nfe),
-    valor_ii: nfe.valorII(),
-    valor_pis: nfe.valorPIS(),
-    valor_cofins: nfe.valorCOFINS(),
+    valor_ii: formataMoeda(nfe.valorII(),2),
+    valor_pis: formataMoeda(nfe.valorPIS(),2),
+    valor_cofins: formataMoeda(nfe.valorCOFINS(), 2),
     codigo_barras: nfe.chave(),
-    valor_combate_pobreza: nfe.valorCombatePobreza(),
-    valor_icms_uf_remetente: nfe.valorIcmsUfRemetente(),
-    valor_icms_uf_destinatario: nfe.valorIcmsUfDestinatario()
+    valor_combate_pobreza: formataMoeda(nfe.valorCombatePobreza(), 2),
+    valor_icms_uf_remetente: formataMoeda(nfe.valorIcmsUfRemetente(), 2),
+    valor_icms_uf_destinatario: formataMoeda(nfe.valorIcmsUfDestinatario(), 2)
   }
 
   if (nfe.transporte().volume()) {
