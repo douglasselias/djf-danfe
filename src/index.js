@@ -400,7 +400,11 @@ function getTemplateData(nfe) {
     duplicatas: duplicatas(nfe),
     valor_ii: nfe.valorII(),
     valor_pis: nfe.valorPIS(),
-    valor_cofins: nfe.valorCOFINS()
+    valor_cofins: nfe.valorCOFINS(),
+    codigo_barras: nfe.chave(),
+    valor_combate_pobreza: nfe.valorCombatePobreza(),
+    valor_icms_uf_remetente: nfe.valorIcmsUfRemetente(),
+    valor_icms_uf_destinatario: nfe.valorIcmsUfDestinatario()
   }
 
   if (nfe.transporte().volume()) {
