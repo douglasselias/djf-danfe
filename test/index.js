@@ -1,5 +1,5 @@
 const { fromXML, fromNFe, fromFile } = require('../src')
-const NFe = require('djf-nfe')
+const NFe = require('d-nfe')
 const { mkdirSync, mkdtempSync, writeFileSync } = require('fs')
 
 function getXML() {

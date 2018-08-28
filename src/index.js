@@ -1,5 +1,5 @@
 const handlebars = require('handlebars')
-const NFe = require('djf-nfe')
+const NFe = require('d-nfe')
 const TEMPLATE_DANFE = __dirname + '/template-danfe.hbs'
 const fs = require('fs')
 
